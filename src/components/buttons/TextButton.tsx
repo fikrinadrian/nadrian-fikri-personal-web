@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import clsxm from '@/lib/clsxm';
 
-const TextButtonVariant = ['primary', 'basic'] as const;
+type TextButtonVariant = 'primary' | 'basic';
 
 type TextButtonProps = {
-  variant?: typeof TextButtonVariant[number];
+  variant?: TextButtonVariant;
 } & React.ComponentPropsWithRef<'button'>;
 
 const TextButton = React.forwardRef<HTMLButtonElement, TextButtonProps>(
@@ -17,7 +17,7 @@ const TextButton = React.forwardRef<HTMLButtonElement, TextButtonProps>(
       disabled: buttonDisabled,
       ...rest
     },
-    ref
+    ref,
   ) => {
     return (
       <button
@@ -39,14 +39,14 @@ const TextButton = React.forwardRef<HTMLButtonElement, TextButtonProps>(
           ],
           //#endregion  //*======== Variant ===========
           'disabled:cursor-not-allowed disabled:brightness-105 disabled:hover:underline',
-          className
+          className,
         )}
         {...rest}
       >
         {children}
       </button>
     );
-  }
+  },
 );
 
 export default TextButton;

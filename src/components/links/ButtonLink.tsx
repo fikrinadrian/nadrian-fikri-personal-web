@@ -7,19 +7,13 @@ import UnstyledLink, {
   UnstyledLinkProps,
 } from '@/components/links/UnstyledLink';
 
-const ButtonLinkVariant = [
-  'primary',
-  'outline',
-  'ghost',
-  'light',
-  'dark',
-] as const;
-const ButtonLinkSize = ['sm', 'base'] as const;
+type ButtonLinkVariant = 'primary' | 'outline' | 'ghost' | 'light' | 'dark';
+type ButtonLinkSize = 'sm' | 'base';
 
 type ButtonLinkProps = {
   isDarkBg?: boolean;
-  variant?: typeof ButtonLinkVariant[number];
-  size?: typeof ButtonLinkSize[number];
+  variant?: ButtonLinkVariant;
+  size?: ButtonLinkSize;
   leftIcon?: IconType;
   rightIcon?: IconType;
   leftIconClassName?: string;
@@ -40,7 +34,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       rightIconClassName,
       ...rest
     },
-    ref
+    ref,
   ) => {
     return (
       <UnstyledLink
@@ -94,7 +88,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
           ],
           //#endregion  //*======== Variants ===========
           'disabled:cursor-not-allowed',
-          className
+          className,
         )}
       >
         {LeftIcon && (
@@ -110,7 +104,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
                   size === 'base' && 'md:text-md text-md',
                   size === 'sm' && 'md:text-md text-sm',
                 ],
-                leftIconClassName
+                leftIconClassName,
               )}
             />
           </div>
@@ -129,14 +123,14 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
                   size === 'base' && 'text-md md:text-md',
                   size === 'sm' && 'md:text-md text-sm',
                 ],
-                rightIconClassName
+                rightIconClassName,
               )}
             />
           </div>
         )}
       </UnstyledLink>
     );
-  }
+  },
 );
 
 export default ButtonLink;
