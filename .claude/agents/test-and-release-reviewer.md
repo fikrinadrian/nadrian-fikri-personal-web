@@ -20,3 +20,10 @@ Review areas:
 Recommend the smallest useful verification set. Use `yarn typecheck`, `yarn lint:strict`, `yarn test`, and `yarn build` according to risk.
 
 When you find issues, provide file and line references, severity, impact, and a concrete fix.
+
+Commit discipline:
+
+- Prefer small, focused commits that each fix or verify one release concern.
+- Split unrelated changes into separate commits, such as test fixes, lint fixes, type fixes, build config, dependency updates, and release workflow changes.
+- Do not mix broad formatting churn with test or release commits unless formatting is required for that exact change.
+- Before committing, review staged files and ensure the commit message describes the actual scope.

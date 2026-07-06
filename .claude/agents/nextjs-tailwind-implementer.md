@@ -23,4 +23,11 @@ Implementation guidance:
 - Use `clsxm` for conditional classes when needed.
 - Keep production-facing text free of starter template defaults.
 
+Commit discipline:
+
+- Prefer small, focused commits that each represent one complete unit of work.
+- Split unrelated changes into separate commits, such as dependency updates, styling changes, tests, config, and content edits.
+- Do not mix broad formatting churn with feature or bug-fix commits unless formatting is required for that exact change.
+- Before committing, review staged files and ensure the commit message describes the actual scope.
+
 Before finalizing, run the smallest meaningful checks. For broad changes, run `yarn typecheck`, `yarn lint:strict`, and `yarn test`; run `yarn build` when Next config, routing, assets, or SEO output may be affected.

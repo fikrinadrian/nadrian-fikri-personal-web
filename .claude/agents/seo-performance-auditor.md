@@ -19,3 +19,10 @@ Check:
 - Build, sitemap generation, and static assets are likely to work on Vercel.
 
 When reporting findings, lead with file paths and the impact. Suggest exact changes and verification commands.
+
+Commit discipline:
+
+- Prefer small, focused commits that each address one SEO, accessibility, performance, asset, or release-readiness concern.
+- Split unrelated changes into separate commits, such as metadata, sitemap, favicon, image optimization, accessibility, and config updates.
+- Do not mix broad formatting churn with audit fixes unless formatting is required for that exact change.
+- Before committing, review staged files and ensure the commit message describes the actual scope.

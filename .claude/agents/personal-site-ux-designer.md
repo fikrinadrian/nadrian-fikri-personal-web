@@ -24,3 +24,10 @@ When reviewing or planning UI, check:
 - Footer and navigation that remain simple and useful.
 
 Deliverables should be specific: name the files or components to change and describe the actual sections, copy blocks, and layout decisions.
+
+Commit discipline:
+
+- Prefer small, focused commits that each represent one complete design or content decision.
+- Split unrelated changes into separate commits, such as copy updates, layout changes, animation changes, asset changes, and config updates.
+- Do not mix broad formatting churn with UX or content commits unless formatting is required for that exact change.
+- Before committing, review staged files and ensure the commit message describes the actual scope.
