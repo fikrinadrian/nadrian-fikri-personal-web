@@ -123,6 +123,90 @@ const enterTransition = {
 
 const viewport = { once: true, amount: 0.2 };
 
+type SquareBackground = {
+  size: number;
+  left: string;
+  top: string;
+  rotate: number;
+  opacity: number;
+  filled?: boolean;
+};
+
+const squareBackgrounds = [
+  [
+    { size: 96, left: '72%', top: '16%', rotate: 8, opacity: 0.16 },
+    {
+      size: 34,
+      left: '61%',
+      top: '58%',
+      rotate: -14,
+      opacity: 0.34,
+      filled: true,
+    },
+    { size: 18, left: '91%', top: '72%', rotate: 24, opacity: 0.42 },
+  ],
+  [
+    { size: 54, left: '6%', top: '22%', rotate: -10, opacity: 0.2 },
+    {
+      size: 22,
+      left: '20%',
+      top: '66%',
+      rotate: 18,
+      opacity: 0.36,
+      filled: true,
+    },
+    { size: 72, left: '86%', top: '38%', rotate: 5, opacity: 0.14 },
+  ],
+  [
+    {
+      size: 28,
+      left: '10%',
+      top: '18%',
+      rotate: 12,
+      opacity: 0.34,
+      filled: true,
+    },
+    { size: 86, left: '76%', top: '14%', rotate: -18, opacity: 0.16 },
+    { size: 42, left: '88%', top: '68%', rotate: 10, opacity: 0.22 },
+  ],
+  [
+    { size: 80, left: '8%', top: '64%', rotate: 9, opacity: 0.15 },
+    {
+      size: 24,
+      left: '69%',
+      top: '18%',
+      rotate: -16,
+      opacity: 0.38,
+      filled: true,
+    },
+    { size: 36, left: '82%', top: '54%', rotate: 28, opacity: 0.25 },
+  ],
+  [
+    { size: 64, left: '14%', top: '22%', rotate: -8, opacity: 0.18 },
+    { size: 30, left: '48%', top: '68%', rotate: 15, opacity: 0.3 },
+    {
+      size: 20,
+      left: '90%',
+      top: '26%',
+      rotate: -24,
+      opacity: 0.4,
+      filled: true,
+    },
+  ],
+  [
+    {
+      size: 26,
+      left: '8%',
+      top: '30%',
+      rotate: 24,
+      opacity: 0.34,
+      filled: true,
+    },
+    { size: 92, left: '78%', top: '18%', rotate: -8, opacity: 0.16 },
+    { size: 44, left: '62%', top: '70%', rotate: 14, opacity: 0.22 },
+  ],
+] satisfies SquareBackground[][];
+
 function getPageMotion(shouldReduceMotion: boolean) {
   return {
     initial: shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 },
@@ -144,6 +228,56 @@ function getRevealMotion(
   };
 }
 
+function SectionSquareBackground({
+  variant,
+  shouldReduceMotion,
+}: {
+  variant: number;
+  shouldReduceMotion: boolean;
+}) {
+  const squares = squareBackgrounds[variant % squareBackgrounds.length];
+
+  return (
+    <div
+      className='pointer-events-none absolute inset-0 overflow-hidden'
+      aria-hidden='true'
+    >
+      {squares.map((square, index) => (
+        <motion.span
+          key={`${square.left}-${square.top}-${square.size}`}
+          className={`absolute rounded-xs border ${
+            square.filled
+              ? 'border-primary-300/15 bg-primary-300/10'
+              : 'border-primary-300/25 bg-white/1.5'
+          }`}
+          style={{
+            width: square.size,
+            height: square.size,
+            left: square.left,
+            top: square.top,
+          }}
+          initial={
+            shouldReduceMotion
+              ? false
+              : { opacity: 0, rotate: square.rotate - 10, scale: 0.86 }
+          }
+          whileInView={{
+            opacity: square.opacity,
+            rotate: square.rotate,
+            scale: 1,
+          }}
+          viewport={viewport}
+          transition={{
+            duration: 0.8,
+            delay: index * 0.08,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function HomePage() {
   const shouldReduceMotion = useReducedMotion();
   const liftSmall = shouldReduceMotion ? undefined : { y: -2 };
@@ -160,8 +294,12 @@ export default function HomePage() {
       >
         <div className='ambient-grid pointer-events-none absolute inset-x-0 top-0 h-170 opacity-50' />
 
-        <section className='relative border-b border-white/10'>
-          <div className='layout flex min-h-[calc(100vh-64px)] flex-col justify-center gap-12 py-20 lg:grid lg:grid-cols-[1.08fr_0.92fr] lg:items-center'>
+        <section className='relative overflow-hidden border-b border-white/10'>
+          <SectionSquareBackground
+            variant={0}
+            shouldReduceMotion={Boolean(shouldReduceMotion)}
+          />
+          <div className='layout relative z-10 flex min-h-[calc(100vh-64px)] flex-col justify-center gap-12 py-20 lg:grid lg:grid-cols-[1.08fr_0.92fr] lg:items-center'>
             <motion.div
               className='max-w-3xl'
               {...getRevealMotion(Boolean(shouldReduceMotion))}
@@ -248,8 +386,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className='relative border-b border-white/10 py-20'>
-          <div className='layout grid gap-8 lg:grid-cols-[0.72fr_1.28fr]'>
+        <section className='relative overflow-hidden border-b border-white/10 py-20'>
+          <SectionSquareBackground
+            variant={1}
+            shouldReduceMotion={Boolean(shouldReduceMotion)}
+          />
+          <div className='layout relative z-10 grid gap-8 lg:grid-cols-[0.72fr_1.28fr]'>
             <motion.div {...getRevealMotion(Boolean(shouldReduceMotion))}>
               <p className='text-sm font-medium uppercase tracking-[0.28em] text-primary-300'>
                 Profile
@@ -277,9 +419,13 @@ export default function HomePage() {
 
         <section
           id='experience'
-          className='scroll-mt-20 border-b border-white/10 py-20'
+          className='relative scroll-mt-20 overflow-hidden border-b border-white/10 py-20'
         >
-          <div className='layout'>
+          <SectionSquareBackground
+            variant={2}
+            shouldReduceMotion={Boolean(shouldReduceMotion)}
+          />
+          <div className='layout relative z-10'>
             <motion.div
               className='max-w-2xl'
               {...getRevealMotion(Boolean(shouldReduceMotion))}
@@ -334,9 +480,13 @@ export default function HomePage() {
 
         <section
           id='skills'
-          className='scroll-mt-20 border-b border-white/10 py-20'
+          className='relative scroll-mt-20 overflow-hidden border-b border-white/10 py-20'
         >
-          <div className='layout'>
+          <SectionSquareBackground
+            variant={3}
+            shouldReduceMotion={Boolean(shouldReduceMotion)}
+          />
+          <div className='layout relative z-10'>
             <motion.div
               className='max-w-2xl'
               {...getRevealMotion(Boolean(shouldReduceMotion))}
@@ -388,8 +538,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className='border-b border-white/10 py-20'>
-          <div className='layout grid gap-6 lg:grid-cols-2'>
+        <section className='relative overflow-hidden border-b border-white/10 py-20'>
+          <SectionSquareBackground
+            variant={4}
+            shouldReduceMotion={Boolean(shouldReduceMotion)}
+          />
+          <div className='layout relative z-10 grid gap-6 lg:grid-cols-2'>
             {education.map((item, index) => (
               <motion.article
                 key={item.school}
@@ -411,8 +565,15 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id='contact' className='scroll-mt-20 py-20'>
-          <div className='layout'>
+        <section
+          id='contact'
+          className='relative scroll-mt-20 overflow-hidden py-20'
+        >
+          <SectionSquareBackground
+            variant={5}
+            shouldReduceMotion={Boolean(shouldReduceMotion)}
+          />
+          <div className='layout relative z-10'>
             <motion.div
               className='rounded border border-white/10 bg-white/4 p-8 sm:p-10'
               {...getRevealMotion(Boolean(shouldReduceMotion))}
