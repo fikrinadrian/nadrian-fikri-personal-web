@@ -5,6 +5,11 @@ html {
   scroll-behavior: smooth;
 }
 
+::selection {
+  color: #080a0f;
+  background-color: #6ee7b7;
+}
+
 :root {
   /* #region  /**=========== Primary Color =========== */
   /* !STARTERCONF Customize these variable, copy and paste from /styles/colors.css for list of colors */
