@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from 'framer-motion';
 import * as React from 'react';
 import {
   FiArrowUpRight,
@@ -113,17 +114,58 @@ const stats = [
   { value: 'React + Go', label: 'Primary product stack' },
 ];
 
+const MotionUnstyledLink = motion.create(UnstyledLink);
+
+const enterTransition = {
+  duration: 0.7,
+  ease: [0.16, 1, 0.3, 1] as const,
+};
+
+const viewport = { once: true, amount: 0.2 };
+
+function getPageMotion(shouldReduceMotion: boolean) {
+  return {
+    initial: shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 },
+    animate: { opacity: 1, y: 0 },
+    transition: enterTransition,
+  };
+}
+
+function getRevealMotion(
+  shouldReduceMotion: boolean,
+  delay = 0,
+  distance = 24,
+) {
+  return {
+    initial: shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: distance },
+    whileInView: { opacity: 1, y: 0 },
+    viewport,
+    transition: { ...enterTransition, delay },
+  };
+}
+
 export default function HomePage() {
+  const shouldReduceMotion = useReducedMotion();
+  const liftSmall = shouldReduceMotion ? undefined : { y: -2 };
+  const liftMedium = shouldReduceMotion ? undefined : { y: -4 };
+  const press = shouldReduceMotion ? undefined : { scale: 0.98 };
+
   return (
     <Layout>
       <Seo />
 
-      <main className='page-enter relative overflow-hidden'>
+      <motion.main
+        className='relative overflow-hidden'
+        {...getPageMotion(Boolean(shouldReduceMotion))}
+      >
         <div className='ambient-grid pointer-events-none absolute inset-x-0 top-0 h-[680px] opacity-50' />
 
         <section className='relative border-b border-white/10'>
           <div className='layout flex min-h-[calc(100vh-64px)] flex-col justify-center gap-12 py-20 lg:grid lg:grid-cols-[1.08fr_0.92fr] lg:items-center'>
-            <div className='section-enter max-w-3xl'>
+            <motion.div
+              className='max-w-3xl'
+              {...getRevealMotion(Boolean(shouldReduceMotion))}
+            >
               <p className='text-sm font-medium uppercase tracking-[0.32em] text-emerald-300'>
                 Software Engineer
               </p>
@@ -137,20 +179,24 @@ export default function HomePage() {
               </p>
 
               <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
-                <UnstyledLink
+                <MotionUnstyledLink
                   href='mailto:ahmad.alfikrinadrian@gmail.com'
-                  className='inline-flex items-center justify-center gap-2 rounded border border-emerald-300/70 bg-emerald-300 px-5 py-3 text-sm font-semibold text-zinc-950 shadow-[0_18px_60px_rgba(52,211,153,0.2)] transition duration-300 hover:-translate-y-0.5 hover:bg-emerald-200'
+                  className='inline-flex items-center justify-center gap-2 rounded border border-emerald-300/70 bg-emerald-300 px-5 py-3 text-sm font-semibold text-zinc-950 shadow-[0_18px_60px_rgba(52,211,153,0.2)] hover:bg-emerald-200'
+                  whileHover={liftSmall}
+                  whileTap={press}
                 >
                   <FiMail />
                   Contact me
-                </UnstyledLink>
-                <UnstyledLink
+                </MotionUnstyledLink>
+                <MotionUnstyledLink
                   href='https://linkedin.com/in/nadrianfikri'
-                  className='inline-flex items-center justify-center gap-2 rounded border border-white/15 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/10'
+                  className='inline-flex items-center justify-center gap-2 rounded border border-white/15 px-5 py-3 text-sm font-semibold text-white hover:border-white/35 hover:bg-white/10'
+                  whileHover={liftSmall}
+                  whileTap={press}
                 >
                   <FiLinkedin />
                   LinkedIn
-                </UnstyledLink>
+                </MotionUnstyledLink>
               </div>
 
               <div className='mt-8 flex flex-wrap items-center gap-4 text-sm text-zinc-400'>
@@ -161,11 +207,11 @@ export default function HomePage() {
                 <span className='hidden h-1 w-1 rounded-full bg-zinc-600 sm:block' />
                 <span>Open to high-impact product engineering work</span>
               </div>
-            </div>
+            </motion.div>
 
-            <aside
-              className='section-enter rounded border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/30 backdrop-blur'
-              style={{ '--enter-delay': '120ms' } as React.CSSProperties}
+            <motion.aside
+              className='rounded border border-white/10 bg-white/[0.035] p-5 shadow-2xl shadow-black/30 backdrop-blur'
+              {...getRevealMotion(Boolean(shouldReduceMotion), 0.12)}
               aria-label='Profile overview'
             >
               <div className='rounded border border-white/10 bg-[#0d1118] p-6'>
@@ -185,45 +231,47 @@ export default function HomePage() {
 
                 <div className='mt-6 grid gap-4'>
                   {stats.map((stat) => (
-                    <div
+                    <motion.div
                       key={stat.label}
-                      className='rounded border border-white/10 bg-white/[0.03] p-4 transition duration-300 hover:-translate-y-0.5 hover:border-emerald-300/30'
+                      className='rounded border border-white/10 bg-white/[0.03] p-4 hover:border-emerald-300/30'
+                      whileHover={liftSmall}
                     >
                       <p className='text-2xl font-semibold text-white'>
                         {stat.value}
                       </p>
                       <p className='mt-1 text-sm text-zinc-400'>{stat.label}</p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
-            </aside>
+            </motion.aside>
           </div>
         </section>
 
         <section className='relative border-b border-white/10 py-20'>
           <div className='layout grid gap-8 lg:grid-cols-[0.72fr_1.28fr]'>
-            <div className='section-enter'>
+            <motion.div {...getRevealMotion(Boolean(shouldReduceMotion))}>
               <p className='text-sm font-medium uppercase tracking-[0.28em] text-emerald-300'>
                 Profile
               </p>
               <h2 className='mt-3 text-3xl font-semibold text-white'>
                 Engineering range with product discipline.
               </h2>
-            </div>
-            <div
-              className='section-enter grid gap-4 sm:grid-cols-2'
-              style={{ '--enter-delay': '90ms' } as React.CSSProperties}
+            </motion.div>
+            <motion.div
+              className='grid gap-4 sm:grid-cols-2'
+              {...getRevealMotion(Boolean(shouldReduceMotion), 0.09)}
             >
               {highlights.map((highlight) => (
-                <article
+                <motion.article
                   key={highlight}
-                  className='rounded border border-white/10 bg-white/[0.035] p-5 text-sm leading-7 text-zinc-300 transition duration-300 hover:-translate-y-1 hover:border-emerald-300/35 hover:bg-white/[0.055]'
+                  className='rounded border border-white/10 bg-white/[0.035] p-5 text-sm leading-7 text-zinc-300 hover:border-emerald-300/35 hover:bg-white/[0.055]'
+                  whileHover={liftMedium}
                 >
                   {highlight}
-                </article>
+                </motion.article>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -232,25 +280,28 @@ export default function HomePage() {
           className='scroll-mt-20 border-b border-white/10 py-20'
         >
           <div className='layout'>
-            <div className='section-enter max-w-2xl'>
+            <motion.div
+              className='max-w-2xl'
+              {...getRevealMotion(Boolean(shouldReduceMotion))}
+            >
               <p className='text-sm font-medium uppercase tracking-[0.28em] text-emerald-300'>
                 Experience
               </p>
               <h2 className='mt-3 text-3xl font-semibold text-white'>
                 From field precision to production systems.
               </h2>
-            </div>
+            </motion.div>
 
             <div className='mt-10 grid gap-5'>
               {experiences.map((experience, index) => (
-                <article
+                <motion.article
                   key={experience.company}
-                  className='section-enter rounded border border-white/10 bg-white/[0.035] p-6 transition duration-300 hover:border-white/25'
-                  style={
-                    {
-                      '--enter-delay': `${index * 90}ms`,
-                    } as React.CSSProperties
-                  }
+                  className='rounded border border-white/10 bg-white/[0.035] p-6 hover:border-white/25'
+                  {...getRevealMotion(
+                    Boolean(shouldReduceMotion),
+                    index * 0.09,
+                  )}
+                  whileHover={liftSmall}
                 >
                   <h3 className='text-xl font-semibold text-white'>
                     {experience.company}
@@ -275,7 +326,7 @@ export default function HomePage() {
                       </div>
                     ))}
                   </div>
-                </article>
+                </motion.article>
               ))}
             </div>
           </div>
@@ -286,28 +337,31 @@ export default function HomePage() {
           className='scroll-mt-20 border-b border-white/10 py-20'
         >
           <div className='layout'>
-            <div className='section-enter max-w-2xl'>
+            <motion.div
+              className='max-w-2xl'
+              {...getRevealMotion(Boolean(shouldReduceMotion))}
+            >
               <p className='text-sm font-medium uppercase tracking-[0.28em] text-emerald-300'>
                 Skills
               </p>
               <h2 className='mt-3 text-3xl font-semibold text-white'>
                 Tools and habits used to ship reliable software.
               </h2>
-            </div>
+            </motion.div>
 
             <div className='mt-10 grid gap-4 md:grid-cols-2'>
               {skillGroups.map((group, index) => {
                 const Icon = group.icon;
 
                 return (
-                  <article
+                  <motion.article
                     key={group.title}
-                    className='section-enter rounded border border-white/10 bg-white/[0.035] p-5 transition duration-300 hover:-translate-y-1 hover:border-emerald-300/35'
-                    style={
-                      {
-                        '--enter-delay': `${index * 80}ms`,
-                      } as React.CSSProperties
-                    }
+                    className='rounded border border-white/10 bg-white/[0.035] p-5 hover:border-emerald-300/35'
+                    {...getRevealMotion(
+                      Boolean(shouldReduceMotion),
+                      index * 0.08,
+                    )}
+                    whileHover={liftMedium}
                   >
                     <div className='flex items-center gap-3'>
                       <span className='flex h-10 w-10 items-center justify-center rounded border border-emerald-300/25 bg-emerald-300/10 text-emerald-200'>
@@ -327,7 +381,7 @@ export default function HomePage() {
                         </span>
                       ))}
                     </div>
-                  </article>
+                  </motion.article>
                 );
               })}
             </div>
@@ -337,12 +391,10 @@ export default function HomePage() {
         <section className='border-b border-white/10 py-20'>
           <div className='layout grid gap-6 lg:grid-cols-2'>
             {education.map((item, index) => (
-              <article
+              <motion.article
                 key={item.school}
-                className='section-enter rounded border border-white/10 bg-white/[0.035] p-6'
-                style={
-                  { '--enter-delay': `${index * 90}ms` } as React.CSSProperties
-                }
+                className='rounded border border-white/10 bg-white/[0.035] p-6'
+                {...getRevealMotion(Boolean(shouldReduceMotion), index * 0.09)}
               >
                 <p className='text-sm text-emerald-300'>{item.period}</p>
                 <h2 className='mt-3 text-xl font-semibold text-white'>
@@ -354,14 +406,17 @@ export default function HomePage() {
                 <p className='mt-4 text-sm leading-7 text-zinc-400'>
                   {item.detail}
                 </p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </section>
 
         <section id='contact' className='scroll-mt-20 py-20'>
           <div className='layout'>
-            <div className='section-enter rounded border border-white/10 bg-white/[0.04] p-8 sm:p-10'>
+            <motion.div
+              className='rounded border border-white/10 bg-white/[0.04] p-8 sm:p-10'
+              {...getRevealMotion(Boolean(shouldReduceMotion))}
+            >
               <p className='text-sm font-medium uppercase tracking-[0.28em] text-emerald-300'>
                 Contact
               </p>
@@ -377,46 +432,54 @@ export default function HomePage() {
                   </p>
                 </div>
                 <div className='flex flex-col gap-3 sm:flex-row'>
-                  <UnstyledLink
+                  <MotionUnstyledLink
                     href='mailto:ahmad.alfikrinadrian@gmail.com'
-                    className='inline-flex items-center justify-center gap-2 rounded border border-emerald-300/70 bg-emerald-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition duration-300 hover:-translate-y-0.5 hover:bg-emerald-200'
+                    className='inline-flex items-center justify-center gap-2 rounded border border-emerald-300/70 bg-emerald-300 px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-emerald-200'
+                    whileHover={liftSmall}
+                    whileTap={press}
                   >
                     <FiMail />
                     Email
-                  </UnstyledLink>
-                  <UnstyledLink
+                  </MotionUnstyledLink>
+                  <MotionUnstyledLink
                     href='https://linkedin.com/in/nadrianfikri'
-                    className='inline-flex items-center justify-center gap-2 rounded border border-white/15 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/10'
+                    className='inline-flex items-center justify-center gap-2 rounded border border-white/15 px-5 py-3 text-sm font-semibold text-white hover:border-white/35 hover:bg-white/10'
+                    whileHover={liftSmall}
+                    whileTap={press}
                   >
                     <FiLinkedin />
                     LinkedIn
-                  </UnstyledLink>
-                  <UnstyledLink
+                  </MotionUnstyledLink>
+                  <MotionUnstyledLink
                     href='https://github.com/nadrianfikri'
-                    className='inline-flex items-center justify-center gap-2 rounded border border-white/15 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/10'
+                    className='inline-flex items-center justify-center gap-2 rounded border border-white/15 px-5 py-3 text-sm font-semibold text-white hover:border-white/35 hover:bg-white/10'
+                    whileHover={liftSmall}
+                    whileTap={press}
                   >
                     <FiGithub />
                     GitHub
-                  </UnstyledLink>
+                  </MotionUnstyledLink>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         <footer className='border-t border-white/10 py-8'>
           <div className='layout flex flex-col justify-between gap-4 text-sm text-zinc-500 sm:flex-row'>
             <p>&copy; {new Date().getFullYear()} Ahmad Alfikri Nadrian.</p>
-            <UnstyledLink
+            <MotionUnstyledLink
               href='mailto:ahmad.alfikrinadrian@gmail.com'
-              className='inline-flex items-center gap-1 text-zinc-400 transition duration-300 hover:text-white'
+              className='inline-flex items-center gap-1 text-zinc-400 hover:text-white'
+              whileHover={liftSmall}
+              whileTap={press}
             >
               ahmad.alfikrinadrian@gmail.com
               <FiArrowUpRight />
-            </UnstyledLink>
+            </MotionUnstyledLink>
           </div>
         </footer>
-      </main>
+      </motion.main>
     </Layout>
   );
 }
