@@ -166,7 +166,7 @@ export default function HomePage() {
               className='max-w-3xl'
               {...getRevealMotion(Boolean(shouldReduceMotion))}
             >
-              <p className='text-sm font-medium uppercase tracking-[0.32em] text-emerald-300'>
+              <p className='text-sm font-medium uppercase tracking-[0.32em] text-primary-300'>
                 Software Engineer
               </p>
               <h1 className='mt-6 text-4xl font-semibold leading-tight text-white sm:text-6xl lg:text-7xl'>
@@ -181,7 +181,7 @@ export default function HomePage() {
               <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
                 <MotionUnstyledLink
                   href='mailto:ahmad.alfikrinadrian@gmail.com'
-                  className='inline-flex items-center justify-center gap-2 rounded border border-emerald-300/70 bg-emerald-300 px-5 py-3 text-sm font-semibold text-zinc-950 shadow-[0_18px_60px_rgba(52,211,153,0.2)] hover:bg-emerald-200'
+                  className='inline-flex items-center justify-center gap-2 rounded border border-primary-300/70 bg-primary-300 px-5 py-3 text-sm font-semibold text-zinc-950 shadow-2xl shadow-primary-400/20 hover:bg-primary-200'
                   whileHover={liftSmall}
                   whileTap={press}
                 >
@@ -201,7 +201,7 @@ export default function HomePage() {
 
               <div className='mt-8 flex flex-wrap items-center gap-4 text-sm text-zinc-400'>
                 <span className='inline-flex items-center gap-2'>
-                  <FiMapPin className='text-emerald-300' />
+                  <FiMapPin className='text-primary-300' />
                   Bogor, Indonesia
                 </span>
                 <span className='hidden h-1 w-1 rounded-full bg-zinc-600 sm:block' />
@@ -224,7 +224,7 @@ export default function HomePage() {
                       Full-stack product delivery
                     </p>
                   </div>
-                  <div className='flex h-14 w-14 items-center justify-center rounded border border-emerald-300/30 bg-emerald-300/10 text-lg font-semibold text-emerald-200'>
+                  <div className='flex h-14 w-14 items-center justify-center rounded border border-primary-300/30 bg-primary-300/10 text-lg font-semibold text-primary-200'>
                     AN
                   </div>
                 </div>
@@ -233,7 +233,7 @@ export default function HomePage() {
                   {stats.map((stat) => (
                     <motion.div
                       key={stat.label}
-                      className='rounded border border-white/10 bg-white/[0.03] p-4 hover:border-emerald-300/30'
+                      className='rounded border border-white/10 bg-white/[0.03] p-4 hover:border-primary-300/30'
                       whileHover={liftSmall}
                     >
                       <p className='text-2xl font-semibold text-white'>
@@ -251,7 +251,7 @@ export default function HomePage() {
         <section className='relative border-b border-white/10 py-20'>
           <div className='layout grid gap-8 lg:grid-cols-[0.72fr_1.28fr]'>
             <motion.div {...getRevealMotion(Boolean(shouldReduceMotion))}>
-              <p className='text-sm font-medium uppercase tracking-[0.28em] text-emerald-300'>
+              <p className='text-sm font-medium uppercase tracking-[0.28em] text-primary-300'>
                 Profile
               </p>
               <h2 className='mt-3 text-3xl font-semibold text-white'>
@@ -265,7 +265,7 @@ export default function HomePage() {
               {highlights.map((highlight) => (
                 <motion.article
                   key={highlight}
-                  className='rounded border border-white/10 bg-white/[0.035] p-5 text-sm leading-7 text-zinc-300 hover:border-emerald-300/35 hover:bg-white/[0.055]'
+                  className='rounded border border-white/10 bg-white/[0.035] p-5 text-sm leading-7 text-zinc-300 hover:border-primary-300/35 hover:bg-white/[0.055]'
                   whileHover={liftMedium}
                 >
                   {highlight}
@@ -284,7 +284,7 @@ export default function HomePage() {
               className='max-w-2xl'
               {...getRevealMotion(Boolean(shouldReduceMotion))}
             >
-              <p className='text-sm font-medium uppercase tracking-[0.28em] text-emerald-300'>
+              <p className='text-sm font-medium uppercase tracking-[0.28em] text-primary-300'>
                 Experience
               </p>
               <h2 className='mt-3 text-3xl font-semibold text-white'>
@@ -310,7 +310,7 @@ export default function HomePage() {
                     {experience.roles.map((role) => (
                       <div
                         key={`${experience.company}-${role.title}`}
-                        className='border-l border-emerald-300/30 pl-5'
+                        className='border-l border-primary-300/30 pl-5'
                       >
                         <div className='flex flex-col justify-between gap-2 sm:flex-row sm:items-start'>
                           <h4 className='text-base font-semibold text-zinc-100'>
@@ -341,7 +341,7 @@ export default function HomePage() {
               className='max-w-2xl'
               {...getRevealMotion(Boolean(shouldReduceMotion))}
             >
-              <p className='text-sm font-medium uppercase tracking-[0.28em] text-emerald-300'>
+              <p className='text-sm font-medium uppercase tracking-[0.28em] text-primary-300'>
                 Skills
               </p>
               <h2 className='mt-3 text-3xl font-semibold text-white'>
@@ -356,7 +356,7 @@ export default function HomePage() {
                 return (
                   <motion.article
                     key={group.title}
-                    className='rounded border border-white/10 bg-white/[0.035] p-5 hover:border-emerald-300/35'
+                    className='rounded border border-white/10 bg-white/[0.035] p-5 hover:border-primary-300/35'
                     {...getRevealMotion(
                       Boolean(shouldReduceMotion),
                       index * 0.08,
@@ -364,7 +364,7 @@ export default function HomePage() {
                     whileHover={liftMedium}
                   >
                     <div className='flex items-center gap-3'>
-                      <span className='flex h-10 w-10 items-center justify-center rounded border border-emerald-300/25 bg-emerald-300/10 text-emerald-200'>
+                      <span className='flex h-10 w-10 items-center justify-center rounded border border-primary-300/25 bg-primary-300/10 text-primary-200'>
                         <Icon />
                       </span>
                       <h3 className='text-lg font-semibold text-white'>
@@ -396,7 +396,7 @@ export default function HomePage() {
                 className='rounded border border-white/10 bg-white/[0.035] p-6'
                 {...getRevealMotion(Boolean(shouldReduceMotion), index * 0.09)}
               >
-                <p className='text-sm text-emerald-300'>{item.period}</p>
+                <p className='text-sm text-primary-300'>{item.period}</p>
                 <h2 className='mt-3 text-xl font-semibold text-white'>
                   {item.school}
                 </h2>
@@ -417,7 +417,7 @@ export default function HomePage() {
               className='rounded border border-white/10 bg-white/[0.04] p-8 sm:p-10'
               {...getRevealMotion(Boolean(shouldReduceMotion))}
             >
-              <p className='text-sm font-medium uppercase tracking-[0.28em] text-emerald-300'>
+              <p className='text-sm font-medium uppercase tracking-[0.28em] text-primary-300'>
                 Contact
               </p>
               <div className='mt-4 flex flex-col justify-between gap-8 lg:flex-row lg:items-end'>
@@ -434,7 +434,7 @@ export default function HomePage() {
                 <div className='flex flex-col gap-3 sm:flex-row'>
                   <MotionUnstyledLink
                     href='mailto:ahmad.alfikrinadrian@gmail.com'
-                    className='inline-flex items-center justify-center gap-2 rounded border border-emerald-300/70 bg-emerald-300 px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-emerald-200'
+                    className='inline-flex items-center justify-center gap-2 rounded border border-primary-300/70 bg-primary-300 px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-primary-200'
                     whileHover={liftSmall}
                     whileTap={press}
                   >
