@@ -158,7 +158,7 @@ export default function HomePage() {
         className='relative overflow-hidden'
         {...getPageMotion(Boolean(shouldReduceMotion))}
       >
-        <div className='ambient-grid pointer-events-none absolute inset-x-0 top-0 h-[680px] opacity-50' />
+        <div className='ambient-grid pointer-events-none absolute inset-x-0 top-0 h-170 opacity-50' />
 
         <section className='relative border-b border-white/10'>
           <div className='layout flex min-h-[calc(100vh-64px)] flex-col justify-center gap-12 py-20 lg:grid lg:grid-cols-[1.08fr_0.92fr] lg:items-center'>
@@ -170,7 +170,7 @@ export default function HomePage() {
                 Software Engineer
               </p>
               <h1 className='mt-6 text-4xl font-semibold leading-tight text-white sm:text-6xl lg:text-7xl'>
-                Ahmad Alfikri Nadrian
+                Fikri Nadrian
               </h1>
               <p className='mt-6 max-w-2xl text-base leading-8 text-zinc-300 sm:text-lg'>
                 I build and scale modern web applications across the React
@@ -233,7 +233,7 @@ export default function HomePage() {
                   {stats.map((stat) => (
                     <motion.div
                       key={stat.label}
-                      className='rounded border border-white/10 bg-white/[0.03] p-4 hover:border-primary-300/30'
+                      className='rounded border border-white/10 bg-white/3 p-4 hover:border-primary-300/30'
                       whileHover={liftSmall}
                     >
                       <p className='text-2xl font-semibold text-white'>
@@ -265,7 +265,7 @@ export default function HomePage() {
               {highlights.map((highlight) => (
                 <motion.article
                   key={highlight}
-                  className='rounded border border-white/10 bg-white/[0.035] p-5 text-sm leading-7 text-zinc-300 hover:border-primary-300/35 hover:bg-white/[0.055]'
+                  className='rounded border border-white/10 bg-white/[0.035] p-5 text-sm leading-7 text-zinc-300 hover:border-primary-300/35 hover:bg-white/5.5'
                   whileHover={liftMedium}
                 >
                   {highlight}
@@ -414,7 +414,7 @@ export default function HomePage() {
         <section id='contact' className='scroll-mt-20 py-20'>
           <div className='layout'>
             <motion.div
-              className='rounded border border-white/10 bg-white/[0.04] p-8 sm:p-10'
+              className='rounded border border-white/10 bg-white/4 p-8 sm:p-10'
               {...getRevealMotion(Boolean(shouldReduceMotion))}
             >
               <p className='text-sm font-medium uppercase tracking-[0.28em] text-primary-300'>
@@ -467,7 +467,7 @@ export default function HomePage() {
 
         <footer className='border-t border-white/10 py-8'>
           <div className='layout flex flex-col justify-between gap-4 text-sm text-zinc-500 sm:flex-row'>
-            <p>&copy; {new Date().getFullYear()} Ahmad Alfikri Nadrian.</p>
+            <p>&copy; {new Date().getFullYear()} Fikri Nadrian.</p>
             <MotionUnstyledLink
               href='mailto:ahmad.alfikrinadrian@gmail.com'
               className='inline-flex items-center gap-1 text-zinc-400 hover:text-white'
