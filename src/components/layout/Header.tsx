@@ -1,9 +1,10 @@
 import UnstyledLink from '@/components/links/UnstyledLink';
 
 const links = [
-  { href: '#experience', label: 'Experience' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#skills', label: 'Skills' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/#contact', label: 'Contact' },
 ];
 
 export default function Header() {
