@@ -10,7 +10,7 @@ The homepage was enhanced using the information extracted from `CV_Ahmad_Templat
 
 ## Goal
 
-Convert the starter homepage into a minimal dark personal portfolio for Ahmad Alfikri Nadrian, focused on software engineering experience, full-stack capability, skills, education, and contact paths.
+Convert the starter homepage into a minimal dark personal portfolio for Fikri Nadrian, focused on software engineering experience, full-stack capability, skills, education, and contact paths.
 
 ## Files Changed
 
@@ -34,13 +34,14 @@ Convert the starter homepage into a minimal dark personal portfolio for Ahmad Al
 - `src/styles/globals.css`
 
   - Enabled smooth scrolling.
-  - Added `page-enter` and `section-enter` animations for initial page and section entrance transitions.
+  - Set emerald as the fixed primary accent color.
+  - Added theme-matched text selection styling using the primary accent.
   - Added reduced-motion handling.
   - Added a subtle grid utility used by the homepage background.
 
 - `src/components/Seo.tsx`
 
-  - Replaced starter title, site name, description, and author metadata with Ahmad Alfikri Nadrian personal branding.
+  - Replaced starter title, site name, description, and author metadata with Fikri Nadrian personal branding.
   - Added `NEXT_PUBLIC_SITE_URL` support with `https://nadrianfikri.vercel.app` as the temporary fallback URL.
 
 - `next-sitemap.config.js`
@@ -51,8 +52,9 @@ Convert the starter homepage into a minimal dark personal portfolio for Ahmad Al
 - Minimal dark interface using near-black surfaces, white text, zinc neutrals, and emerald accents.
 - Thin borders, compact cards, and restrained hover movement.
 - No new UI dependency was added.
-- Animations are CSS-based and respect `prefers-reduced-motion`.
+- Animations use Framer Motion and respect `prefers-reduced-motion`.
 - Navigation uses in-page anchors with browser-native smooth scroll.
+- Decorative section backgrounds use minimal animated square accents that follow the fixed emerald primary color.
 
 ## Content Model
 
@@ -72,4 +74,15 @@ This keeps the first iteration simple. If content grows, these arrays can be mov
 - Confirm the GitHub URL. The current homepage uses `https://github.com/nadrianfikri` as an inferred profile URL.
 - Consider adding a real profile image or custom Open Graph image asset.
 - Consider adding a Projects section once project names, descriptions, stacks, and links are available.
-- Run the full verification set after dependencies are installed: `yarn typecheck`, `yarn lint:strict`, `yarn test`, and `yarn build`.
+- Run the full verification set after dependencies are installed: `pnpm typecheck`, `pnpm lint:strict`, `pnpm test`, and `pnpm build`.
+
+## Update Log
+
+### 2026-07-09
+
+- Updated the public identity from `Ahmad Alfikri Nadrian` to `Fikri Nadrian`.
+- Removed the accent color switcher and localStorage-based accent state.
+- Locked the primary accent to emerald through `src/styles/globals.css`.
+- Removed the demo `@/styles/colors.css` import from `src/pages/_app.tsx` so alternate color classes cannot override the fixed emerald accent.
+- Replaced decorative path backgrounds with minimal Framer Motion square accents per section.
+- Keep this document updated whenever portfolio content, theme behavior, navigation, metadata, or verification commands change.

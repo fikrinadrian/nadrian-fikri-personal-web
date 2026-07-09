@@ -2,30 +2,30 @@
 
 ## Project
 
-This is Nadrian Fikri's personal web project. The codebase is currently based on `ts-nextjs-tailwind-starter`, so treat starter defaults as scaffolding that should be replaced with personal branding, portfolio content, real metadata, and production-ready assets.
+This is Fikri Nadrian's personal web project. The codebase is currently based on `ts-nextjs-tailwind-starter`, so treat starter defaults as scaffolding that should be replaced with personal branding, portfolio content, real metadata, and production-ready assets.
 
 ## Stack
 
-- Next.js 13 pages router, React 18, TypeScript.
-- Tailwind CSS 3 with the shared `.layout` utility and primary colors defined in `src/styles/globals.css`.
+- Next.js pages router, React, TypeScript.
+- Tailwind CSS with the shared `.layout` utility and emerald primary colors defined in `src/styles/globals.css`.
 - Jest and Testing Library for unit/component tests.
-- Yarn is the package manager. Do not introduce npm or pnpm lockfiles.
+- pnpm is the package manager. Do not introduce npm or Yarn lockfiles.
 - Path aliases:
   - `@/*` maps to `src/*`.
   - `~/*` maps to `public/*`.
 
 ## Commands
 
-- Install: `yarn install`
-- Dev server: `yarn dev`
-- Production build: `yarn build`
-- Lint: `yarn lint`
-- Strict lint: `yarn lint:strict`
-- Typecheck: `yarn typecheck`
-- Tests: `yarn test`
-- Format check: `yarn format:check`
+- Install: `pnpm install`
+- Dev server: `pnpm dev`
+- Production build: `pnpm build`
+- Lint: `pnpm lint`
+- Strict lint: `pnpm lint:strict`
+- Typecheck: `pnpm typecheck`
+- Tests: `pnpm test`
+- Format check: `pnpm format:check`
 
-Run the smallest useful verification for the change. For broad UI, SEO, or configuration changes, prefer `yarn typecheck`, `yarn lint:strict`, and `yarn test`; use `yarn build` when routing, Next config, metadata, sitemap, images, or deployment behavior is affected.
+Run the smallest useful verification for the change. For broad UI, SEO, or configuration changes, prefer `pnpm typecheck`, `pnpm lint:strict`, and `pnpm test`; use `pnpm build` when routing, Next config, metadata, sitemap, images, or deployment behavior is affected.
 
 ## Code Conventions
 
@@ -37,10 +37,16 @@ Run the smallest useful verification for the change. For broad UI, SEO, or confi
 - Use `Seo` from `src/components/Seo.tsx`; update its starter defaults before considering the site production-ready.
 - Use `NextImage` when adding optimized local or remote images, and update `next.config.js` if remote image domains are required.
 - Do not leave `!STARTERCONF` defaults in production-facing content.
+- Keep `docs/personal-web-enhancement.md` updated whenever portfolio content, navigation, theme behavior, metadata, or verification guidance changes.
+
+## Commit Discipline
+
+- Before committing, always review whether the documentation needs an update and include the relevant docs change in the same commit when behavior, content, workflow, verification guidance, or project conventions change.
+- Treat `docs/personal-web-enhancement.md` as the primary docs file for personal web enhancement notes unless a more specific docs file clearly owns the change.
 
 ## UI Direction
 
-- This is a personal web, not a starter demo. The first viewport should immediately communicate who Nadrian Fikri is, what he does, and what visitors can do next.
+- This is a personal web, not a starter demo. The first viewport should immediately communicate who Fikri Nadrian is, what he does, and what visitors can do next.
 - Favor a polished portfolio interface: clear hierarchy, strong typography, restrained motion, readable contrast, and responsive sections for profile, projects, writing/notes, experience, and contact.
 - Avoid generic template copy, oversized marketing filler, and purely decorative UI that does not support the personal brand.
 - Keep layouts responsive and test mobile spacing mentally when editing Tailwind classes.

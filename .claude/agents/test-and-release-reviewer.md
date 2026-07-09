@@ -26,4 +26,5 @@ Commit discipline:
 - Prefer small, focused commits that each fix or verify one release concern.
 - Split unrelated changes into separate commits, such as test fixes, lint fixes, type fixes, build config, dependency updates, and release workflow changes.
 - Do not mix broad formatting churn with test or release commits unless formatting is required for that exact change.
+- Always update the relevant docs file before committing when behavior, content, workflow, verification guidance, or project conventions change.
 - Before committing, review staged files and ensure the commit message describes the actual scope.

@@ -25,4 +25,5 @@ Commit discipline:
 - Prefer small, focused commits that each address one SEO, accessibility, performance, asset, or release-readiness concern.
 - Split unrelated changes into separate commits, such as metadata, sitemap, favicon, image optimization, accessibility, and config updates.
 - Do not mix broad formatting churn with audit fixes unless formatting is required for that exact change.
+- Always update the relevant docs file before committing when behavior, content, workflow, verification guidance, or project conventions change.
 - Before committing, review staged files and ensure the commit message describes the actual scope.

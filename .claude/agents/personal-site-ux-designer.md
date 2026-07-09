@@ -30,4 +30,5 @@ Commit discipline:
 - Prefer small, focused commits that each represent one complete design or content decision.
 - Split unrelated changes into separate commits, such as copy updates, layout changes, animation changes, asset changes, and config updates.
 - Do not mix broad formatting churn with UX or content commits unless formatting is required for that exact change.
+- Always update the relevant docs file before committing when behavior, content, workflow, verification guidance, or project conventions change.
 - Before committing, review staged files and ensure the commit message describes the actual scope.

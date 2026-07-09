@@ -8,6 +8,7 @@ Please include a summary of the technical solution and how it solves the problem
 # Checklist
 
 - [ ] I have commented my code, particularly in hard-to-understand areas.
+- [ ] I have updated the relevant docs file, or confirmed no docs update is needed.
 - [ ] Already rebased against main branch.
 
 # Screenshots
