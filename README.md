@@ -9,8 +9,8 @@ project and blog content:
 - **Classic UI** — the primary dark portfolio at `/`
 - **Pixel Art UI** — an RPG-inspired portfolio under `/pixel-art`
 
-Visitors can switch themes from either header without the themes overriding
-each other.
+Visitors can switch themes from either header through an animated, accessible
+theme dropdown without the themes overriding each other.
 
 ## Routes
 
@@ -80,6 +80,7 @@ The pixel experience uses dedicated components and a scoped stylesheet:
 
 - `src/components/layout/PixelLayout.tsx`
 - `src/components/layout/PixelHeader.tsx`
+- `src/components/layout/ThemeSwitcher.tsx`
 - `src/styles/PixelPortfolio.module.css`
 - `src/pages/pixel-art/`
 

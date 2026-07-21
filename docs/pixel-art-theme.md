@@ -16,14 +16,17 @@ the same project and blog content as the classic site.
 | `/pixel-art/blog/[slug]` | Pixel-styled Markdown article |
 
 Links inside the pixel experience should remain under `/pixel-art` when an
-equivalent pixel page exists. The `Classic UI` control in `PixelHeader` is the
-explicit exit back to `/`.
+equivalent pixel page exists. The shared animated theme dropdown is the
+explicit way to switch between the pixel route family and the classic UI.
 
 ## Components
 
 - `PixelLayout` owns the pixel header and keyboard skip link.
 - `PixelHeader` provides navigation for the prefixed routes and the Classic UI
-  switch.
+  theme selector.
+- `ThemeSwitcher` provides the animated dropdown, active-theme state,
+  click-away behavior, Escape handling, and arrow-key menu navigation for both
+  headers.
 - `PixelPortfolio.module.css` contains the complete pixel design system,
   responsive behavior, archive layouts, and article typography.
 

@@ -1,5 +1,6 @@
 import styles from '@/styles/PixelPortfolio.module.css';
 
+import ThemeSwitcher from '@/components/layout/ThemeSwitcher';
 import UnstyledLink from '@/components/links/UnstyledLink';
 
 const links = [
@@ -31,9 +32,7 @@ export default function PixelHeader() {
               </li>
             ))}
             <li>
-              <UnstyledLink href='/' className={styles['pixel-nav-cta']}>
-                CLASSIC UI
-              </UnstyledLink>
+              <ThemeSwitcher currentTheme='pixel' />
             </li>
           </ul>
         </nav>
