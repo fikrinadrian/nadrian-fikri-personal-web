@@ -318,7 +318,7 @@ export default function HomePage() {
 
               <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
                 <MotionUnstyledLink
-                  href='mailto:ahmad.alfikrinadrian@gmail.com'
+                  href='mailto:fikrinadrian@gmail.com'
                   className='inline-flex items-center justify-center gap-2 rounded border border-primary-300/70 bg-primary-300 px-5 py-3 text-sm font-semibold text-zinc-950 shadow-2xl shadow-primary-400/20 hover:bg-primary-200'
                   whileHover={liftSmall}
                   whileTap={press}
@@ -594,7 +594,7 @@ export default function HomePage() {
                 </div>
                 <div className='flex flex-col gap-3 sm:flex-row'>
                   <MotionUnstyledLink
-                    href='mailto:ahmad.alfikrinadrian@gmail.com'
+                    href='mailto:fikrinadrian@gmail.com'
                     className='inline-flex items-center justify-center gap-2 rounded border border-primary-300/70 bg-primary-300 px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-primary-200'
                     whileHover={liftSmall}
                     whileTap={press}
@@ -630,12 +630,12 @@ export default function HomePage() {
           <div className='layout flex flex-col justify-between gap-4 text-sm text-zinc-500 sm:flex-row'>
             <p>&copy; {new Date().getFullYear()} Fikri Nadrian.</p>
             <MotionUnstyledLink
-              href='mailto:ahmad.alfikrinadrian@gmail.com'
+              href='mailto:fikrinadrian@gmail.com'
               className='inline-flex items-center gap-1 text-zinc-400 hover:text-white'
               whileHover={liftSmall}
               whileTap={press}
             >
-              ahmad.alfikrinadrian@gmail.com
+              fikrinadrian@gmail.com
               <FiArrowUpRight />
             </MotionUnstyledLink>
           </div>

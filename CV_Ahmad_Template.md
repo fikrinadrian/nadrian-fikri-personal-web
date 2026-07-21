@@ -1,6 +1,6 @@
 # Ahmad Alfikri Nadrian
 
-Email: ahmad.alfikrinadrian@gmail.com | LinkedIn: linkedin.com/in/fikrinadrian | Bogor, Indonesia
+Email: fikrinadrian@gmail.com | LinkedIn: linkedin.com/in/fikrinadrian | Bogor, Indonesia
 
 ## Summary
 
