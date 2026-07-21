@@ -86,3 +86,13 @@ This keeps the first iteration simple. If content grows, these arrays can be mov
 - Removed the demo `@/styles/colors.css` import from `src/pages/_app.tsx` so alternate color classes cannot override the fixed emerald accent.
 - Replaced decorative path backgrounds with minimal Framer Motion square accents per section.
 - Keep this document updated whenever portfolio content, theme behavior, navigation, metadata, or verification commands change.
+
+### 2026-07-21
+
+- Added a Selected Projects section to the homepage with three freelance projects.
+- Added a dedicated `/projects` page with expanded project context, public live-site links, and a contact call to action.
+- Added shared project data in `src/data/projects.ts` so the homepage and projects page use one content source.
+- Added reusable `ProjectCard` and CSS-based `ProjectPreview` components. The previews do not depend on external screenshots or remote images.
+- Added Projects to the shared navigation. Experience and Skills are hidden in the smallest navigation layout to keep it usable on narrow screens.
+- Identified PT Redision Teknologi Indonesia as the internal dashboard client while keeping product screens and live access private.
+- Public project descriptions were aligned with the live Aura Teknologi and Moxie Lab Digital websites. No unconfirmed technology stack or business result is claimed.

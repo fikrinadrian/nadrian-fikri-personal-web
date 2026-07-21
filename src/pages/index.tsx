@@ -12,8 +12,11 @@ import {
   FiServer,
 } from 'react-icons/fi';
 
+import { projects } from '@/data/projects';
+
 import Layout from '@/components/layout/Layout';
 import UnstyledLink from '@/components/links/UnstyledLink';
+import ProjectCard from '@/components/projects/ProjectCard';
 import Seo from '@/components/Seo';
 
 const highlights = [
@@ -418,11 +421,64 @@ export default function HomePage() {
         </section>
 
         <section
-          id='experience'
+          id='projects'
           className='relative scroll-mt-20 overflow-hidden border-b border-white/10 py-20'
         >
           <SectionSquareBackground
             variant={2}
+            shouldReduceMotion={Boolean(shouldReduceMotion)}
+          />
+          <div className='layout relative z-10'>
+            <motion.div
+              className='flex flex-col justify-between gap-6 sm:flex-row sm:items-end'
+              {...getRevealMotion(Boolean(shouldReduceMotion))}
+            >
+              <div className='max-w-2xl'>
+                <p className='text-sm font-medium uppercase tracking-[0.28em] text-primary-300'>
+                  Selected Projects
+                </p>
+                <h2 className='mt-3 text-3xl font-semibold text-white'>
+                  Freelance work for products and businesses.
+                </h2>
+                <p className='mt-4 max-w-xl text-sm leading-7 text-zinc-400'>
+                  Internal interfaces and public-facing websites designed to
+                  communicate clearly and work reliably.
+                </p>
+              </div>
+              <MotionUnstyledLink
+                href='/projects'
+                className='inline-flex items-center gap-2 text-sm font-semibold text-primary-300 hover:text-primary-200'
+                whileHover={liftSmall}
+                whileTap={press}
+              >
+                View all projects
+                <FiArrowUpRight />
+              </MotionUnstyledLink>
+            </motion.div>
+
+            <div className='mt-10 grid gap-5 lg:grid-cols-3'>
+              {projects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  {...getRevealMotion(
+                    Boolean(shouldReduceMotion),
+                    index * 0.08,
+                  )}
+                  whileHover={liftMedium}
+                >
+                  <ProjectCard project={project} />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section
+          id='experience'
+          className='relative scroll-mt-20 overflow-hidden border-b border-white/10 py-20'
+        >
+          <SectionSquareBackground
+            variant={3}
             shouldReduceMotion={Boolean(shouldReduceMotion)}
           />
           <div className='layout relative z-10'>
@@ -483,7 +539,7 @@ export default function HomePage() {
           className='relative scroll-mt-20 overflow-hidden border-b border-white/10 py-20'
         >
           <SectionSquareBackground
-            variant={3}
+            variant={4}
             shouldReduceMotion={Boolean(shouldReduceMotion)}
           />
           <div className='layout relative z-10'>
@@ -540,7 +596,7 @@ export default function HomePage() {
 
         <section className='relative overflow-hidden border-b border-white/10 py-20'>
           <SectionSquareBackground
-            variant={4}
+            variant={5}
             shouldReduceMotion={Boolean(shouldReduceMotion)}
           />
           <div className='layout relative z-10 grid gap-6 lg:grid-cols-2'>
@@ -570,7 +626,7 @@ export default function HomePage() {
           className='relative scroll-mt-20 overflow-hidden py-20'
         >
           <SectionSquareBackground
-            variant={5}
+            variant={0}
             shouldReduceMotion={Boolean(shouldReduceMotion)}
           />
           <div className='layout relative z-10'>
