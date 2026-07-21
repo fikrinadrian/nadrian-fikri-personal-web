@@ -59,7 +59,6 @@ const experiences = [
         items: [
           'Completed multiple web development projects for clients across internal business tools and public-facing company websites.',
           'Delivered projects from requirements and interface implementation through testing and production launch.',
-          'Built an internal dashboard for PT Redison Teknologi Indonesia and landing pages for Aura Teknologi and Moxie Lab Digital.',
         ],
       },
     ],

@@ -89,7 +89,7 @@ This keeps the first iteration simple. If content grows, these arrays can be mov
 
 ### 2026-07-21
 
-- Added Freelance Software Developer experience for 2023–Present, highlighting multiple completed client projects and the three portfolio examples.
+- Added Freelance Software Developer experience for 2023–Present, highlighting multiple completed client projects.
 - Added a Curated Projects section to the homepage with three freelance projects.
 - Added a dedicated `/projects` page with expanded project context, public live-site links, and a contact call to action.
 - Added shared project data in `src/data/projects.ts` so the homepage and projects page use one content source.
