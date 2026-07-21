@@ -92,6 +92,7 @@ This keeps the first iteration simple. If content grows, these arrays can be mov
 - Added Reku.id Product Development to the Projects collection as professional product work, covering the documented transition from frontend to full-stack ownership.
 - Updated project totals and page copy to distinguish professional product work from freelance client projects.
 - Limited the homepage project showcase to Reku.id and Moxie Lab Digital while keeping all projects on `/projects`.
+- Made homepage project cards compact and equal-height with shorter previews, tighter spacing, two-line summaries, and bottom-aligned links; detailed `/projects` cards remain unchanged.
 - Added Freelance Software Developer experience for 2023–Present, highlighting multiple completed client projects.
 - Added a Curated Projects section to the homepage with four professional and freelance projects.
 - Added a dedicated `/projects` page with expanded project context, public live-site links, and a contact call to action.

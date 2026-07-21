@@ -9,12 +9,18 @@ import { Project } from '@/data/projects';
 
 type ProjectPreviewProps = {
   variant: Project['preview'];
+  compact?: boolean;
 };
 
-export default function ProjectPreview({ variant }: ProjectPreviewProps) {
+export default function ProjectPreview({
+  variant,
+  compact = false,
+}: ProjectPreviewProps) {
   return (
     <div
-      className='relative aspect-[16/10] overflow-hidden rounded border border-white/10 bg-[#0b0e14]'
+      className={`relative overflow-hidden rounded border border-white/10 bg-[#0b0e14] ${
+        compact ? 'aspect-2/1' : 'aspect-16/10'
+      }`}
       aria-hidden='true'
     >
       <div className='flex h-8 items-center gap-1.5 border-b border-white/10 bg-black/25 px-3'>
@@ -35,7 +41,7 @@ export default function ProjectPreview({ variant }: ProjectPreviewProps) {
 function RekuPreview() {
   return (
     <div className='relative h-[calc(100%-2rem)] overflow-hidden bg-[#07111f] px-[8%] py-[6%]'>
-      <div className='absolute -right-[8%] -top-[35%] h-[120%] w-[55%] rounded-full bg-blue-500/15 blur-3xl' />
+      <div className='absolute right-[-8%] top-[-35%] h-[120%] w-[55%] rounded-full bg-blue-500/15 blur-3xl' />
       <div className='relative z-10 flex items-center justify-between'>
         <div className='flex items-center gap-2'>
           <span className='flex h-6 w-6 items-center justify-center rounded-full bg-blue-500 text-[8px] font-black text-white'>
@@ -160,7 +166,7 @@ function DashboardPreview() {
 function AuraPreview() {
   return (
     <div className='relative flex h-[calc(100%-2rem)] items-center overflow-hidden bg-[#07141a] px-[9%]'>
-      <div className='absolute -right-[12%] -top-[45%] h-[130%] w-[55%] rounded-full bg-cyan-400/10 blur-3xl' />
+      <div className='absolute right-[-12%] top-[-45%] h-[130%] w-[55%] rounded-full bg-cyan-400/10 blur-3xl' />
       <div className='relative z-10 w-[56%]'>
         <div className='flex items-center gap-2'>
           <span className='flex h-6 w-6 items-center justify-center rounded bg-cyan-300 text-[8px] font-black text-slate-950'>
@@ -191,7 +197,7 @@ function AuraPreview() {
 function MoxiePreview() {
   return (
     <div className='relative h-[calc(100%-2rem)] overflow-hidden bg-[#f1ff6a] p-[7%] text-[#171717]'>
-      <div className='absolute -bottom-12 -right-8 h-32 w-32 rotate-12 rounded-[2rem] bg-fuchsia-500/90' />
+      <div className='absolute -bottom-12 -right-8 h-32 w-32 rotate-12 rounded-4xl bg-fuchsia-500/90' />
       <div className='absolute right-[12%] top-[14%] h-12 w-12 rotate-12 rounded-xl bg-blue-600' />
       <div className='relative z-10 flex items-center justify-between'>
         <span className='text-[10px] font-black tracking-tight'>MOXIE.</span>
@@ -205,7 +211,7 @@ function MoxiePreview() {
         <p className='text-[6px] font-bold uppercase tracking-[0.18em]'>
           Digital marketing solutions
         </p>
-        <p className='mt-2 text-[clamp(13px,2.1vw,25px)] font-black leading-[0.9] tracking-[-0.05em]'>
+        <p className='mt-2 text-[clamp(13px,2.1vw,25px)] font-black leading-[0.9] tracking-tighter'>
           MAKE YOUR BRAND IMPOSSIBLE TO IGNORE.
         </p>
         <div className='mt-4 flex gap-2'>

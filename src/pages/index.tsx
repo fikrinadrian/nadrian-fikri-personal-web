@@ -477,6 +477,7 @@ export default function HomePage() {
               {homepageProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
+                  className='h-full'
                   {...getRevealMotion(
                     Boolean(shouldReduceMotion),
                     index * 0.08,

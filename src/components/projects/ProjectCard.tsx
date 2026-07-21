@@ -20,16 +20,16 @@ export default function ProjectCard({
       className={`group overflow-hidden rounded border border-white/10 bg-white/[0.035] transition-colors duration-300 hover:border-primary-300/35 ${
         detailed
           ? 'scroll-mt-24 p-4 sm:p-5 lg:grid lg:grid-cols-[0.95fr_1.05fr] lg:gap-8 lg:p-7'
-          : 'p-4'
+          : 'flex h-full flex-col p-3'
       }`}
     >
-      <ProjectPreview variant={project.preview} />
+      <ProjectPreview variant={project.preview} compact={!detailed} />
 
       <div
         className={
           detailed
             ? 'px-1 pb-1 pt-6 lg:flex lg:flex-col lg:py-2'
-            : 'px-1 pb-1 pt-5'
+            : 'flex flex-1 flex-col px-1 pb-1 pt-4'
         }
       >
         <div className='flex items-center justify-between gap-3'>
@@ -42,14 +42,18 @@ export default function ProjectCard({
         </div>
 
         <h3
-          className={`mt-3 font-semibold text-white ${
-            detailed ? 'text-2xl sm:text-3xl' : 'text-xl'
+          className={`font-semibold text-white ${
+            detailed ? 'mt-3 text-2xl sm:text-3xl' : 'mt-2 text-lg'
           }`}
         >
           {project.title}
         </h3>
         <p className='mt-1 text-xs text-zinc-500'>{project.client}</p>
-        <p className='mt-4 text-sm leading-7 text-zinc-300'>
+        <p
+          className={`text-sm text-zinc-300 ${
+            detailed ? 'mt-4 leading-7' : 'mt-3 line-clamp-2 leading-6'
+          }`}
+        >
           {project.description}
         </p>
 
@@ -71,7 +75,7 @@ export default function ProjectCard({
           </>
         )}
 
-        <div className={detailed ? 'mt-6 lg:mt-auto lg:pt-6' : 'mt-5'}>
+        <div className={detailed ? 'mt-6 lg:mt-auto lg:pt-6' : 'mt-auto pt-4'}>
           {project.url ? (
             <UnstyledLink
               href={project.url}
