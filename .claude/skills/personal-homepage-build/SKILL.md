@@ -22,7 +22,7 @@ Use this skill when changing `src/pages/index.tsx` or building homepage sections
 2. Create a first viewport that clearly presents Nadrian Fikri, a concise role statement, and primary actions.
 3. Add only sections that can be backed by real content or clear placeholders:
    - profile summary
-   - selected projects
+   - Curated projects
    - skills or focus areas
    - experience or timeline
    - writing or notes

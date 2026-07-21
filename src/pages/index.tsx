@@ -51,6 +51,20 @@ const experiences = [
     ],
   },
   {
+    company: 'Freelance',
+    roles: [
+      {
+        title: 'Freelance Software Developer',
+        period: '2023 - Present',
+        items: [
+          'Completed multiple web development projects for clients across internal business tools and public-facing company websites.',
+          'Delivered projects from requirements and interface implementation through testing and production launch.',
+          'Built an internal dashboard for PT Redison Teknologi Indonesia and landing pages for Aura Teknologi and Moxie Lab Digital.',
+        ],
+      },
+    ],
+  },
+  {
     company: 'Surveying Projects',
     roles: [
       {
@@ -435,7 +449,7 @@ export default function HomePage() {
             >
               <div className='max-w-2xl'>
                 <p className='text-sm font-medium uppercase tracking-[0.28em] text-primary-300'>
-                  Selected Projects
+                  Curated Projects
                 </p>
                 <h2 className='mt-3 text-3xl font-semibold text-white'>
                   Freelance work for products and businesses.

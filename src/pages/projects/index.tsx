@@ -25,7 +25,7 @@ export default function ProjectsPage() {
     <Layout>
       <Seo
         templateTitle='Projects'
-        description='Selected freelance web projects by Fikri Nadrian, including internal product interfaces and public company landing pages.'
+        description='Curated freelance web projects by Fikri Nadrian, including internal product interfaces and public company landing pages.'
       />
 
       <main className='relative overflow-hidden'>
@@ -35,7 +35,7 @@ export default function ProjectsPage() {
           <motion.div className='layout' {...revealMotion}>
             <p className='inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.28em] text-primary-300'>
               <FiBriefcase />
-              Selected Projects
+              Curated Projects
             </p>
             <div className='mt-5 grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end'>
               <h1 className='max-w-3xl text-4xl font-semibold leading-tight text-white sm:text-6xl'>

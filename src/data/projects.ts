@@ -48,8 +48,8 @@ export const projects: Project[] = [
     description:
       'A bold landing page for a full-service digital and social media marketing agency.',
     details:
-      'The page communicates Moxie’s services, featured clients, selected campaigns, and contact information through a brand-led, visual experience.',
-    highlights: ['Agency profile', 'Services & clients', 'Selected works'],
+      'The page communicates Moxie’s services, featured clients, Curated campaigns, and contact information through a brand-led, visual experience.',
+    highlights: ['Agency profile', 'Services & clients', 'Curated works'],
     preview: 'moxie',
     url: 'https://moxielab.id/',
   },
