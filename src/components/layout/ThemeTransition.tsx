@@ -1,11 +1,11 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import * as React from 'react';
-import { FiGrid, FiMonitor } from 'react-icons/fi';
+import { FiGrid, FiMonitor, FiZap } from 'react-icons/fi';
 
 import styles from '@/styles/ThemeTransition.module.css';
 
-export type PortfolioTheme = 'classic' | 'pixel';
+export type PortfolioTheme = 'classic' | 'pixel' | 'cyberpunk';
 
 type TransitionPhase = 'covering' | 'revealing';
 
@@ -40,15 +40,25 @@ export function getThemePath(targetTheme: PortfolioTheme, asPath: string) {
   const { pathname, suffix } = splitRoute(asPath);
   const isPixelRoute =
     pathname === '/pixel-art' || pathname.startsWith('/pixel-art/');
+  const isCyberpunkRoute =
+    pathname === '/cyberpunk' || pathname.startsWith('/cyberpunk/');
 
   if (targetTheme === 'classic') {
+    if (isCyberpunkRoute) return `/${suffix}`;
     if (!isPixelRoute) return asPath;
 
     const classicPath = pathname.slice('/pixel-art'.length);
     return `${classicPath || '/'}${suffix}`;
   }
 
+  if (targetTheme === 'cyberpunk') {
+    if (isCyberpunkRoute) return asPath;
+    return `/cyberpunk${suffix}`;
+  }
+
   if (isPixelRoute) return asPath;
+
+  if (isCyberpunkRoute) return `/pixel-art${suffix}`;
 
   const hasPixelEquivalent =
     pathname === '/' ||
@@ -133,9 +143,18 @@ export default function ThemeTransitionProvider({
     [startThemeTransition],
   );
 
-  const TargetIcon = transition?.targetTheme === 'pixel' ? FiGrid : FiMonitor;
+  const TargetIcon =
+    transition?.targetTheme === 'pixel'
+      ? FiGrid
+      : transition?.targetTheme === 'cyberpunk'
+        ? FiZap
+        : FiMonitor;
   const targetLabel =
-    transition?.targetTheme === 'pixel' ? 'PIXEL ART' : 'CLASSIC UI';
+    transition?.targetTheme === 'pixel'
+      ? 'PIXEL ART'
+      : transition?.targetTheme === 'cyberpunk'
+        ? 'CYBERPUNK'
+        : 'CLASSIC UI';
 
   return (
     <ThemeTransitionContext.Provider value={contextValue}>
@@ -145,7 +164,9 @@ export default function ThemeTransitionProvider({
           className={`${styles.overlay} ${
             transition.targetTheme === 'pixel'
               ? styles.overlayPixel
-              : styles.overlayClassic
+              : transition.targetTheme === 'cyberpunk'
+                ? styles.overlayCyberpunk
+                : styles.overlayClassic
           }`}
           data-theme-transition={transition.phase}
           role='status'

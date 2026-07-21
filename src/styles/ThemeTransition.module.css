@@ -22,6 +22,11 @@
   color: #10182f;
 }
 
+.overlayCyberpunk {
+  background: #05060a;
+  color: #f7fbff;
+}
+
 .decoration {
   position: absolute;
   inset: 0;
@@ -41,6 +46,17 @@
       rgb(110 231 183 / 0.08) 45% 46%,
       transparent 46%
     );
+}
+
+.overlayCyberpunk .decoration {
+  background:
+    linear-gradient(rgb(101 247 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(101 247 255 / 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 50% 55%, rgb(255 79 216 / 0.2), transparent 36%);
+  background-size:
+    42px 42px,
+    42px 42px,
+    auto;
 }
 
 .overlayPixel .decoration::before,
@@ -84,6 +100,23 @@
   box-shadow: 0 30px 80px rgb(0 0 0 / 0.45);
 }
 
+.overlayCyberpunk .transitionPanel {
+  border: 1px solid rgb(101 247 255 / 0.45);
+  background: rgb(8 10 18 / 0.92);
+  padding: 2.5rem;
+  box-shadow:
+    14px 14px 0 rgb(255 79 216 / 0.12),
+    0 0 70px rgb(101 247 255 / 0.12);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
+}
+
 .overlayPixel .transitionPanel {
   border: 5px solid #10182f;
   background: #fff8de;
@@ -107,6 +140,13 @@
   color: #6ee7b7;
 }
 
+.overlayCyberpunk .transitionIcon {
+  border: 1px solid #65f7ff;
+  background: rgb(101 247 255 / 0.08);
+  color: #65f7ff;
+  box-shadow: 0 0 28px rgb(101 247 255 / 0.25);
+}
+
 .overlayPixel .transitionIcon {
   border: 4px solid #10182f;
   background: #294fbf;
@@ -122,6 +162,16 @@
 
 .overlayClassic .transitionPanel p {
   color: #71717a;
+}
+
+.overlayCyberpunk .transitionPanel p {
+  color: #65f7ff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.overlayCyberpunk .transitionPanel strong {
+  letter-spacing: 0.08em;
+  text-shadow: 3px 0 #ff4fd8;
 }
 
 .overlayPixel .transitionPanel p {
@@ -163,6 +213,16 @@
 
 .overlayClassic .progress span {
   background: #6ee7b7;
+}
+
+.overlayCyberpunk .progress {
+  border: 1px solid rgb(101 247 255 / 0.3);
+  background: rgb(101 247 255 / 0.06);
+}
+
+.overlayCyberpunk .progress span {
+  background: linear-gradient(90deg, #65f7ff, #ff4fd8);
+  box-shadow: 0 0 18px rgb(101 247 255 / 0.5);
 }
 
 .overlayPixel .progress {

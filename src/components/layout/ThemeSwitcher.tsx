@@ -1,7 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import * as React from 'react';
-import { FiCheck, FiGrid, FiMonitor } from 'react-icons/fi';
+import { FiCheck, FiGrid, FiMonitor, FiZap } from 'react-icons/fi';
 
 import styles from '@/styles/PixelPortfolio.module.css';
 
@@ -29,6 +29,12 @@ const themes = [
     description: '8-bit adventure mode',
     icon: FiGrid,
   },
+  {
+    id: 'cyberpunk' as const,
+    label: 'Cyberpunk',
+    description: 'Neon parallax future',
+    icon: FiZap,
+  },
 ];
 
 export default function ThemeSwitcher({ currentTheme }: ThemeSwitcherProps) {
@@ -40,6 +46,7 @@ export default function ThemeSwitcher({ currentTheme }: ThemeSwitcherProps) {
   const menuId = React.useId();
   const shouldReduceMotion = useReducedMotion();
   const isPixel = currentTheme === 'pixel';
+  const isCyberpunk = currentTheme === 'cyberpunk';
   const activeTheme = themes.find((theme) => theme.id === currentTheme)!;
 
   React.useEffect(() => {
@@ -124,7 +131,9 @@ export default function ThemeSwitcher({ currentTheme }: ThemeSwitcherProps) {
         className={
           isPixel
             ? styles['pixel-theme-button']
-            : 'group inline-flex h-11 w-11 items-center justify-center rounded border border-primary-300/45 bg-primary-300/5 text-base text-primary-300 transition-colors duration-200 hover:border-primary-200 hover:bg-primary-300/10 hover:text-primary-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300'
+            : isCyberpunk
+              ? 'group inline-flex h-11 w-11 items-center justify-center border border-[#65f7ff]/55 bg-[#65f7ff]/8 text-base text-[#65f7ff] transition-colors duration-200 hover:border-[#ff4fd8] hover:bg-[#ff4fd8]/10 hover:text-[#ff9aeb] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#65f7ff]'
+              : 'group inline-flex h-11 w-11 items-center justify-center rounded border border-primary-300/45 bg-primary-300/5 text-base text-primary-300 transition-colors duration-200 hover:border-primary-200 hover:bg-primary-300/10 hover:text-primary-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300'
         }
         aria-expanded={isOpen}
         aria-controls={menuId}
@@ -152,7 +161,11 @@ export default function ThemeSwitcher({ currentTheme }: ThemeSwitcherProps) {
             className={
               isPixel
                 ? styles['pixel-theme-menu']
-                : 'absolute top-[calc(100%+12px)] right-0 z-120 w-64 rounded border border-white/10 bg-[#0d1118] p-2 text-left shadow-2xl shadow-black/50'
+                : `absolute top-[calc(100%+12px)] right-0 z-120 w-64 border p-2 text-left shadow-2xl shadow-black/50 ${
+                    isCyberpunk
+                      ? 'border-[#65f7ff]/30 bg-[#090a12]'
+                      : 'rounded border-white/10 bg-[#0d1118]'
+                  }`
             }
             initial={
               shouldReduceMotion ? false : { opacity: 0, y: -8, scale: 0.96 }
@@ -173,7 +186,9 @@ export default function ThemeSwitcher({ currentTheme }: ThemeSwitcherProps) {
               className={
                 isPixel
                   ? styles['pixel-theme-menu-label']
-                  : 'px-3 pt-2 pb-2 text-[10px] font-semibold tracking-[0.18em] text-zinc-500 uppercase'
+                  : `px-3 pt-2 pb-2 text-[10px] font-semibold tracking-[0.18em] uppercase ${
+                      isCyberpunk ? 'text-[#65f7ff]/60' : 'text-zinc-500'
+                    }`
               }
             >
               Choose interface
@@ -197,9 +212,15 @@ export default function ThemeSwitcher({ currentTheme }: ThemeSwitcherProps) {
                         ? `${styles['pixel-theme-option']} ${
                             isActive ? styles['pixel-theme-option-active'] : ''
                           }`
-                        : `grid min-h-16 grid-cols-[36px_1fr_18px] items-center gap-3 rounded px-3 py-2.5 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-primary-300 ${
+                        : `grid min-h-16 grid-cols-[36px_1fr_18px] items-center gap-3 px-3 py-2.5 transition-colors duration-150 focus-visible:outline-2 ${
+                            isCyberpunk
+                              ? 'focus-visible:outline-[#65f7ff]'
+                              : 'rounded focus-visible:outline-primary-300'
+                          } ${
                             isActive
-                              ? 'bg-primary-300/10 text-white'
+                              ? isCyberpunk
+                                ? 'bg-[#65f7ff]/10 text-white'
+                                : 'bg-primary-300/10 text-white'
                               : 'text-zinc-300 hover:bg-white/5 hover:text-white'
                           }`
                     }
@@ -223,9 +244,13 @@ export default function ThemeSwitcher({ currentTheme }: ThemeSwitcherProps) {
                       className={
                         isPixel
                           ? styles['pixel-theme-option-icon']
-                          : `grid h-9 w-9 place-items-center rounded border ${
+                          : `grid h-9 w-9 place-items-center border ${
+                              isCyberpunk ? '' : 'rounded'
+                            } ${
                               isActive
-                                ? 'border-primary-300/45 bg-primary-300/10 text-primary-300'
+                                ? isCyberpunk
+                                  ? 'border-[#65f7ff]/55 bg-[#65f7ff]/10 text-[#65f7ff]'
+                                  : 'border-primary-300/45 bg-primary-300/10 text-primary-300'
                                 : 'border-white/10 bg-white/5 text-zinc-400'
                             }`
                       }
@@ -259,7 +284,9 @@ export default function ThemeSwitcher({ currentTheme }: ThemeSwitcherProps) {
                         className={
                           isPixel
                             ? styles['pixel-theme-check']
-                            : 'text-primary-300'
+                            : isCyberpunk
+                              ? 'text-[#65f7ff]'
+                              : 'text-primary-300'
                         }
                         aria-label='Current theme'
                       />
