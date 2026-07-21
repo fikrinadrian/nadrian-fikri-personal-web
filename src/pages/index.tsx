@@ -327,7 +327,7 @@ export default function HomePage() {
                   Contact me
                 </MotionUnstyledLink>
                 <MotionUnstyledLink
-                  href='https://linkedin.com/in/nadrianfikri'
+                  href='https://linkedin.com/in/fikrinadrian'
                   className='inline-flex items-center justify-center gap-2 rounded border border-white/15 px-5 py-3 text-sm font-semibold text-white hover:border-white/35 hover:bg-white/10'
                   whileHover={liftSmall}
                   whileTap={press}
@@ -603,7 +603,7 @@ export default function HomePage() {
                     Email
                   </MotionUnstyledLink>
                   <MotionUnstyledLink
-                    href='https://linkedin.com/in/nadrianfikri'
+                    href='https://linkedin.com/in/fikrinadrian'
                     className='inline-flex items-center justify-center gap-2 rounded border border-white/15 px-5 py-3 text-sm font-semibold text-white hover:border-white/35 hover:bg-white/10'
                     whileHover={liftSmall}
                     whileTap={press}
@@ -612,7 +612,7 @@ export default function HomePage() {
                     LinkedIn
                   </MotionUnstyledLink>
                   <MotionUnstyledLink
-                    href='https://github.com/nadrianfikri'
+                    href='https://github.com/fikrinadrian'
                     className='inline-flex items-center justify-center gap-2 rounded border border-white/15 px-5 py-3 text-sm font-semibold text-white hover:border-white/35 hover:bg-white/10'
                     whileHover={liftSmall}
                     whileTap={press}

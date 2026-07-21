@@ -42,7 +42,7 @@ Convert the starter homepage into a minimal dark personal portfolio for Fikri Na
 - `src/components/Seo.tsx`
 
   - Replaced starter title, site name, description, and author metadata with Fikri Nadrian personal branding.
-  - Added `NEXT_PUBLIC_SITE_URL` support with `https://nadrianfikri.vercel.app` as the temporary fallback URL.
+  - Added `NEXT_PUBLIC_SITE_URL` support with `https://fikrinadrian.vercel.app` as the temporary fallback URL.
 
 - `next-sitemap.config.js`
   - Replaced the starter sitemap URL with `NEXT_PUBLIC_SITE_URL` support and the same temporary fallback URL.
@@ -71,7 +71,7 @@ This keeps the first iteration simple. If content grows, these arrays can be mov
 ## Follow-Up Notes
 
 - Replace `NEXT_PUBLIC_SITE_URL` with the final production domain when it is ready.
-- Confirm the GitHub URL. The current homepage uses `https://github.com/nadrianfikri` as an inferred profile URL.
+- Confirm the GitHub URL. The current homepage uses `https://github.com/fikrinadrian` as an inferred profile URL.
 - Consider adding a real profile image or custom Open Graph image asset.
 - Consider adding a Projects section once project names, descriptions, stacks, and links are available.
 - Run the full verification set after dependencies are installed: `pnpm typecheck`, `pnpm lint:strict`, `pnpm test`, and `pnpm build`.

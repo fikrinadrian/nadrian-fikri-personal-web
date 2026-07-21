@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://nadrianfikri.vercel.app';
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://fikrinadrian.vercel.app';
 
 const defaultMeta = {
   title: 'Ahmad Alfikri Nadrian - Software Engineer',
