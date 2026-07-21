@@ -6,6 +6,7 @@ const links = [
   { href: '/projects', label: 'Projects' },
   { href: '/blog', label: 'Blog' },
   { href: '/#contact', label: 'Contact' },
+  { href: '/pixel-art', label: 'Pixel Art' },
 ];
 
 export default function Header() {
@@ -19,7 +20,7 @@ export default function Header() {
           NADRIAN
         </UnstyledLink>
         <nav>
-          <ul className='flex items-center justify-between gap-3 text-xs font-medium text-zinc-400 sm:gap-6 sm:text-sm'>
+          <ul className='flex items-center justify-between gap-2 text-[11px] font-medium text-zinc-400 sm:gap-6 sm:text-sm'>
             {links.map(({ href, label, hideOnMobile }) => (
               <li
                 key={`${href}${label}`}
@@ -27,7 +28,11 @@ export default function Header() {
               >
                 <UnstyledLink
                   href={href}
-                  className='transition-colors duration-300 hover:text-white'
+                  className={
+                    href === '/pixel-art'
+                      ? 'inline-flex min-h-10 items-center rounded border border-primary-300/45 px-2.5 text-primary-300 transition-colors duration-300 hover:border-primary-200 hover:bg-primary-300/10 hover:text-primary-200'
+                      : 'transition-colors duration-300 hover:text-white'
+                  }
                 >
                   {label}
                 </UnstyledLink>

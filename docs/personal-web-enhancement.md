@@ -104,3 +104,15 @@ This keeps the first iteration simple. If content grows, these arrays can be mov
 - Added Projects to the shared navigation. Experience and Skills are hidden in the smallest navigation layout to keep it usable on narrow screens.
 - Identified PT Redision Teknologi Indonesia as the internal dashboard client while keeping product screens and live access private.
 - Public project descriptions were aligned with the live Aura Teknologi and Moxie Lab Digital websites. No unconfirmed technology stack or business result is claimed.
+
+#### Pixel Art Route Family
+
+- Added an alternate RPG-inspired pixel-art portfolio at `/pixel-art` while preserving the classic dark portfolio at `/`.
+- Added dedicated pixel-art project, blog archive, and blog article routes under `/pixel-art/projects` and `/pixel-art/blog`.
+- Added bidirectional theme switching through `Pixel Art` in the classic header and `Classic UI` in the pixel header.
+- Kept projects and Markdown posts shared between both route families instead of duplicating content.
+- Isolated all alternate-theme rules in `src/styles/PixelPortfolio.module.css`; no pixel-art selectors were added to `globals.css`.
+- Added `PixelHeader` and `PixelLayout` so the alternate navigation and accessibility behavior do not alter the classic layout.
+- Added responsive browser verification at 390px and 1440px with no horizontal overflow.
+- Replaced the starter-template README with project-specific setup, routes, content architecture, and verification commands.
+- Added `docs/pixel-art-theme.md` with maintenance conventions for the prefixed route family.

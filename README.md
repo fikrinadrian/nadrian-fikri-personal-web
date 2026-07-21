@@ -1,122 +1,94 @@
-# Next.js + Tailwind CSS + TypeScript Starter and Boilerplate
+# Fikri Nadrian — Personal Portfolio
 
-<div align="center">
-  <h2>🔋 ts-nextjs-tailwind-starter</h2>
-  <p>Next.js + Tailwind CSS + TypeScript starter packed with useful development features.</p>
-  <p>Made by <a href="https://theodorusclarence.com">Theodorus Clarence</a></p>
+Personal portfolio for Fikri Nadrian, a software engineer working across
+frontend and full-stack product development.
 
-[![GitHub Repo stars](https://img.shields.io/github/stars/theodorusclarence/ts-nextjs-tailwind-starter)](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/stargazers)
-[![Depfu](https://badges.depfu.com/badges/fc6e730632ab9dacaf7df478a08684a7/overview.svg)](https://depfu.com/github/theodorusclarence/ts-nextjs-tailwind-starter?project_id=30160)
-[![Last Update](https://img.shields.io/badge/deps%20update-every%20sunday-blue.svg)](https://shields.io/)
+The website offers two independent visual experiences backed by the same
+project and blog content:
 
-</div>
+- **Classic UI** — the primary dark portfolio at `/`
+- **Pixel Art UI** — an RPG-inspired portfolio under `/pixel-art`
 
-## Features
+Visitors can switch themes from either header without the themes overriding
+each other.
 
-This repository is 🔋 battery packed with:
+## Routes
 
-- ⚡️ Next.js 13
-- ⚛️ React 18
-- ✨ TypeScript
-- 💨 Tailwind CSS 3 — Configured with CSS Variables to extend the **primary** color
-- 💎 Pre-built Components — Components that will **automatically adapt** with your brand color, [check here for the demo](https://tsnext-tw.thcl.dev/components)
-- 🃏 Jest — Configured for unit testing
-- 📈 Absolute Import and Path Alias — Import components using `@/` prefix
-- 📏 ESLint — Find and fix problems in your code, also will **auto sort** your imports
-- 💖 Prettier — Format your code consistently
-- 🐶 Husky & Lint Staged — Run scripts on your staged files before they are committed
-- 🤖 Conventional Commit Lint — Make sure you & your teammates follow conventional commit
-- ⏰ Release Please — Generate your changelog by activating the `release-please` workflow
-- 👷 Github Actions — Lint your code on PR
-- 🚘 Automatic Branch and Issue Autolink — Branch will be automatically created on issue **assign**, and auto linked on PR
-- 🔥 Snippets — A collection of useful snippets
-- 👀 Default Open Graph — Awesome open graph generated using [og](https://github.com/theodorusclarence/og), fork it and deploy!
-- 🗺 Site Map — Automatically generate sitemap.xml
-- 📦 Expansion Pack — Easily install common libraries, additional components, and configs
+| Content      | Classic UI     | Pixel Art UI             |
+| ------------ | -------------- | ------------------------ |
+| Homepage     | `/`            | `/pixel-art`             |
+| Projects     | `/projects`    | `/pixel-art/projects`    |
+| Blog archive | `/blog`        | `/pixel-art/blog`        |
+| Blog article | `/blog/[slug]` | `/pixel-art/blog/[slug]` |
 
-See the 👉 [feature details and changelog](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/blob/main/CHANGELOG.md) 👈 for more.
+Both route families reuse the same data sources. Projects come from
+`src/data/projects.ts`, while blog posts are Markdown files in
+`src/content/blog`.
 
-You can also check all of the **details and demos** on my blog post:
+## Technology
 
-- [One-stop Starter to Maximize Efficiency on Next.js & Tailwind CSS Projects](https://theodorusclarence.com/blog/one-stop-starter)
+- Next.js Pages Router
+- React and TypeScript
+- Tailwind CSS
+- CSS Modules for the isolated pixel-art design
+- Framer Motion
+- Markdown processing with Remark
+- Jest and Playwright
 
-## Getting Started
+## Local Development
 
-### 1. Clone this template using one of the three ways:
-
-1. Use this repository as template
-
-   **Disclosure:** by using this repository as a template, there will be an attribution on your repository.
-
-   I'll appreciate if you do, so this template can be known by others too 😄
-
-   ![Use as template](https://user-images.githubusercontent.com/55318172/129183039-1a61e68d-dd90-4548-9489-7b3ccbb35810.png)
-
-2. Using `create-next-app`
-
-   ```bash
-   npx create-next-app -e https://github.com/theodorusclarence/ts-nextjs-tailwind-starter project-name
-   ```
-
-3. Using `degit`
-
-   ```bash
-   npx degit theodorusclarence/ts-nextjs-tailwind-starter YOUR_APP_NAME
-   ```
-
-4. Deploy to Vercel
-
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Ftheodorusclarence%2Fts-nextjs-tailwind-starter)
-
-### 2. Install dependencies
-
-It is encouraged to use **yarn** so the husky hooks can work properly.
+Install dependencies and start the development server:
 
 ```bash
-yarn install
+pnpm install
+pnpm dev
 ```
 
-### 3. Run the development server
+Open [http://localhost:3000](http://localhost:3000) for the classic portfolio
+or [http://localhost:3000/pixel-art](http://localhost:3000/pixel-art) for the
+pixel-art portfolio.
 
-You can start the server using this command:
+## Verification
+
+Run the complete local verification set before committing:
 
 ```bash
-yarn dev
+pnpm typecheck
+pnpm lint:strict
+pnpm test
+pnpm build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. You can start editing the page by modifying `src/pages/index.tsx`.
+The production build also generates sitemap files through `next-sitemap`.
 
-### 4. Change defaults
+## Content
 
-There are some things you need to change including title, urls, favicons, etc.
+### Projects
 
-Find all comments with !STARTERCONF, then follow the guide.
+Edit `src/data/projects.ts`. Both project pages and the homepage showcases read
+from this shared collection.
 
-Don't forget to change the package name in package.json
+### Blog
 
-### 5. Commit Message Convention
+Add Markdown files to `src/content/blog`. Front matter is normalized by
+`src/lib/blog.ts` and used by both visual themes.
 
-This starter is using [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), it is mandatory to use it to commit changes.
+## Theme Architecture
 
-## Projects using ts-nextjs-tailwind-starter
+The classic experience keeps the shared `Layout` and Tailwind-based styling.
+The pixel experience uses dedicated components and a scoped stylesheet:
 
-<!--
-TEMPLATE
-- [sitename](https://sitelink.com) ([Source](https://github.com/githublink))
-- [sitename](https://sitelink.com)
--->
+- `src/components/layout/PixelLayout.tsx`
+- `src/components/layout/PixelHeader.tsx`
+- `src/styles/PixelPortfolio.module.css`
+- `src/pages/pixel-art/`
 
-- [theodorusclarence.com](https://theodorusclarence.com) ([Source](https://github.com/theodorusclarence/theodorusclarence.com))
-- [Notiolink](https://notiolink.thcl.dev/) ([Source](https://github.com/theodorusclarence/notiolink))
+Pixel-art rules are not written to `globals.css`, preventing the alternate
+design from leaking into classic pages. See
+[`docs/pixel-art-theme.md`](docs/pixel-art-theme.md) for the route and styling
+conventions.
 
-Are you using this starter? Please add your page (and repo) to the end of the list via a [Pull Request](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/edit/main/README.md). 😃
+## Environment
 
-## Expansion Pack 📦
-
-This starter is now equipped with an [expansion pack](https://github.com/theodorusclarence/expansion-pack).
-
-You can easily add expansion such as React Hook Form + Components, Storybook, and more just using a single command line.
-
-https://user-images.githubusercontent.com/55318172/146631994-e1cac137-1664-4cfe-950b-a96decc1eaa6.mp4
-
-Check out the [expansion pack repository](https://github.com/theodorusclarence/expansion-pack) for the commands
+Set `NEXT_PUBLIC_SITE_URL` to the deployed origin. When it is not provided, SEO
+and sitemap configuration use `https://fikrinadrian.vercel.app`.
