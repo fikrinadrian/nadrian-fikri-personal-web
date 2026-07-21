@@ -7,14 +7,32 @@ export type Project = {
   description: string;
   details: string;
   highlights: string[];
-  preview: 'dashboard' | 'aura' | 'moxie';
+  preview: 'reku' | 'dashboard' | 'aura' | 'moxie';
   url?: string;
 };
 
 export const projects: Project[] = [
   {
-    id: 'internal-company-dashboard',
+    id: 'reku-product-development',
     number: '01',
+    title: 'Reku.id Product Development',
+    client: 'Reku.id',
+    category: 'Professional Product Work',
+    description:
+      'Ongoing product engineering work for an Indonesian crypto, US stocks, and ETF investment platform.',
+    details:
+      'Contributed to frontend product delivery from 2022 before expanding into full-stack ownership across web applications, APIs, business logic, and relational database changes.',
+    highlights: [
+      'Frontend: 2022–2025',
+      'Full-stack: 2025–Present',
+      'Product engineering',
+    ],
+    preview: 'reku',
+    url: 'https://reku.id/',
+  },
+  {
+    id: 'internal-company-dashboard',
+    number: '02',
     title: 'Internal Company Dashboard',
     client: 'PT Redision Teknologi Indonesia',
     category: 'Internal Web Application',
@@ -27,7 +45,7 @@ export const projects: Project[] = [
   },
   {
     id: 'aura-teknologi',
-    number: '02',
+    number: '03',
     title: 'Aura Teknologi',
     client: 'PT Aura Kreasi Teknologi',
     category: 'Company Landing Page',
@@ -41,7 +59,7 @@ export const projects: Project[] = [
   },
   {
     id: 'moxie-lab',
-    number: '03',
+    number: '04',
     title: 'Moxie Lab Digital',
     client: 'Moxie Lab Digital',
     category: 'Agency Landing Page',

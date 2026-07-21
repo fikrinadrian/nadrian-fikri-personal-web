@@ -130,6 +130,10 @@ const stats = [
   { value: 'React + Go', label: 'Primary product stack' },
 ];
 
+const homepageProjects = projects.filter((project) =>
+  ['reku-product-development', 'moxie-lab'].includes(project.id),
+);
+
 const MotionUnstyledLink = motion.create(UnstyledLink);
 
 const enterTransition = {
@@ -451,11 +455,11 @@ export default function HomePage() {
                   Curated Projects
                 </p>
                 <h2 className='mt-3 text-3xl font-semibold text-white'>
-                  Freelance work for products and businesses.
+                  Product work for real businesses.
                 </h2>
                 <p className='mt-4 max-w-xl text-sm leading-7 text-zinc-400'>
-                  Internal interfaces and public-facing websites designed to
-                  communicate clearly and work reliably.
+                  Professional product engineering, internal interfaces, and
+                  public-facing websites built to work reliably.
                 </p>
               </div>
               <MotionUnstyledLink
@@ -469,8 +473,8 @@ export default function HomePage() {
               </MotionUnstyledLink>
             </motion.div>
 
-            <div className='mt-10 grid gap-5 lg:grid-cols-3'>
-              {projects.map((project, index) => (
+            <div className='mt-10 grid gap-5 md:grid-cols-2'>
+              {homepageProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   {...getRevealMotion(

@@ -1,4 +1,9 @@
-import { FiBarChart2, FiGrid, FiMessageSquare } from 'react-icons/fi';
+import {
+  FiBarChart2,
+  FiGrid,
+  FiMessageSquare,
+  FiTrendingUp,
+} from 'react-icons/fi';
 
 import { Project } from '@/data/projects';
 
@@ -19,9 +24,77 @@ export default function ProjectPreview({ variant }: ProjectPreviewProps) {
         <span className='ml-2 h-2 w-2/5 rounded-full bg-white/8' />
       </div>
 
+      {variant === 'reku' && <RekuPreview />}
       {variant === 'dashboard' && <DashboardPreview />}
       {variant === 'aura' && <AuraPreview />}
       {variant === 'moxie' && <MoxiePreview />}
+    </div>
+  );
+}
+
+function RekuPreview() {
+  return (
+    <div className='relative h-[calc(100%-2rem)] overflow-hidden bg-[#07111f] px-[8%] py-[6%]'>
+      <div className='absolute -right-[8%] -top-[35%] h-[120%] w-[55%] rounded-full bg-blue-500/15 blur-3xl' />
+      <div className='relative z-10 flex items-center justify-between'>
+        <div className='flex items-center gap-2'>
+          <span className='flex h-6 w-6 items-center justify-center rounded-full bg-blue-500 text-[8px] font-black text-white'>
+            R
+          </span>
+          <span className='text-[9px] font-bold tracking-wide text-white'>
+            REKU
+          </span>
+        </div>
+        <div className='flex gap-1.5'>
+          {[1, 2, 3].map((item) => (
+            <span key={item} className='h-1 w-5 rounded-full bg-white/15' />
+          ))}
+        </div>
+      </div>
+
+      <div className='relative z-10 mt-[9%] grid grid-cols-[0.76fr_1.24fr] gap-[7%]'>
+        <div>
+          <p className='text-[6px] font-semibold uppercase tracking-[0.2em] text-blue-300'>
+            Invest with confidence
+          </p>
+          <div className='mt-2 h-2.5 w-full rounded-full bg-white/85' />
+          <div className='mt-1.5 h-2.5 w-4/5 rounded-full bg-white/85' />
+          <div className='mt-3 h-1 w-full rounded-full bg-white/12' />
+          <div className='mt-1.5 h-1 w-2/3 rounded-full bg-white/12' />
+          <div className='mt-4 h-5 w-16 rounded-full bg-blue-500' />
+        </div>
+
+        <div className='rounded-lg border border-white/10 bg-white/5 p-3 shadow-2xl shadow-black/30'>
+          <div className='flex items-center justify-between'>
+            <div>
+              <div className='h-1 w-10 rounded-full bg-white/15' />
+              <div className='mt-2 h-2 w-14 rounded-full bg-white/70' />
+            </div>
+            <span className='flex h-6 w-6 items-center justify-center rounded-full bg-emerald-400/15 text-[9px] text-emerald-300'>
+              <FiTrendingUp />
+            </span>
+          </div>
+          <div className='mt-4 flex h-12 items-end gap-1'>
+            {[35, 48, 42, 68, 58, 76, 92, 82].map((height) => (
+              <span
+                key={height}
+                className='flex-1 rounded-t-sm bg-blue-400/45'
+                style={{ height: `${height}%` }}
+              />
+            ))}
+          </div>
+          <div className='mt-3 grid grid-cols-3 gap-1.5'>
+            {['BTC', 'US', 'ETF'].map((asset) => (
+              <span
+                key={asset}
+                className='rounded bg-white/5 py-1 text-center text-[5px] font-semibold text-zinc-400'
+              >
+                {asset}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

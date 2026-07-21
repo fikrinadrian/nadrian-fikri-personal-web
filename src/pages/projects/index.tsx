@@ -25,7 +25,7 @@ export default function ProjectsPage() {
     <Layout>
       <Seo
         templateTitle='Projects'
-        description='Curated freelance web projects by Fikri Nadrian, including internal product interfaces and public company landing pages.'
+        description='Curated professional and freelance web projects by Fikri Nadrian, including investment products, internal interfaces, and public company websites.'
       />
 
       <main className='relative overflow-hidden'>
@@ -39,17 +39,17 @@ export default function ProjectsPage() {
             </p>
             <div className='mt-5 grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end'>
               <h1 className='max-w-3xl text-4xl font-semibold leading-tight text-white sm:text-6xl'>
-                Freelance work built for real businesses.
+                Product work built for real businesses.
               </h1>
               <p className='max-w-xl text-base leading-8 text-zinc-300'>
-                A selection of client projects across internal products, company
-                profiles, and digital agency experiences.
+                A selection of professional and freelance work across investment
+                products, internal tools, and company websites.
               </p>
             </div>
 
             <div className='mt-10 grid grid-cols-3 gap-3 border-t border-white/10 pt-6 sm:max-w-xl sm:gap-8'>
-              <ProjectStat value='03' label='Freelance projects' />
-              <ProjectStat value='02' label='Public launches' />
+              <ProjectStat value='04' label='Curated work' />
+              <ProjectStat value='03' label='Public products' />
               <ProjectStat value='01' label='Private product' />
             </div>
           </motion.div>
