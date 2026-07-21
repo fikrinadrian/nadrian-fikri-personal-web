@@ -1,8 +1,11 @@
 import { motion, useReducedMotion } from 'framer-motion';
+import { GetStaticProps } from 'next';
 import * as React from 'react';
 import {
   FiArrowUpRight,
+  FiBookOpen,
   FiBriefcase,
+  FiClock,
   FiCode,
   FiDatabase,
   FiGithub,
@@ -11,6 +14,8 @@ import {
   FiMapPin,
   FiServer,
 } from 'react-icons/fi';
+
+import { BlogPostMeta, getAllBlogPosts } from '@/lib/blog';
 
 import { projects } from '@/data/projects';
 
@@ -78,23 +83,6 @@ const experiences = [
   },
 ];
 
-const education = [
-  {
-    school: 'DumbWays Indonesia Teknologi',
-    program: 'Full Stack Developer Bootcamp',
-    period: 'Sep 2021 - Dec 2021',
-    detail:
-      'Completed an intensive JavaScript bootcamp covering full-stack web apps, REST APIs, databases, Git, debugging, and collaborative development.',
-  },
-  {
-    school: 'SMK Adi Sanggoro Bogor',
-    program: 'Mining and Geology',
-    period: 'Jun 2014 - Jun 2017',
-    detail:
-      'Built the technical foundation that led into field surveying and later software engineering.',
-  },
-];
-
 const skillGroups = [
   {
     title: 'Frontend',
@@ -130,6 +118,10 @@ const stats = [
   { value: 'React + Go', label: 'Primary product stack' },
 ];
 
+type HomePageProps = {
+  posts: BlogPostMeta[];
+};
+
 const homepageProjects = projects.filter((project) =>
   ['reku-product-development', 'moxie-lab'].includes(project.id),
 );
@@ -142,6 +134,20 @@ const enterTransition = {
 };
 
 const viewport = { once: true, amount: 0.2 };
+
+function formatBlogDate(date: string) {
+  return new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }).format(new Date(date));
+}
+
+export const getStaticProps: GetStaticProps<HomePageProps> = async () => ({
+  props: {
+    posts: getAllBlogPosts().slice(0, 2),
+  },
+});
 
 type SquareBackground = {
   size: number;
@@ -298,7 +304,7 @@ function SectionSquareBackground({
   );
 }
 
-export default function HomePage() {
+export default function HomePage({ posts }: HomePageProps) {
   const shouldReduceMotion = useReducedMotion();
   const liftSmall = shouldReduceMotion ? undefined : { y: -2 };
   const liftMedium = shouldReduceMotion ? undefined : { y: -4 };
@@ -492,11 +498,88 @@ export default function HomePage() {
         </section>
 
         <section
-          id='experience'
+          id='blog'
           className='relative scroll-mt-20 overflow-hidden border-b border-white/10 py-20'
         >
           <SectionSquareBackground
             variant={3}
+            shouldReduceMotion={Boolean(shouldReduceMotion)}
+          />
+          <div className='layout relative z-10'>
+            <motion.div
+              className='flex flex-col justify-between gap-6 sm:flex-row sm:items-end'
+              {...getRevealMotion(Boolean(shouldReduceMotion))}
+            >
+              <div className='max-w-2xl'>
+                <p className='inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.28em] text-primary-300'>
+                  <FiBookOpen />
+                  Latest Writing
+                </p>
+                <h2 className='mt-3 text-3xl font-semibold text-white'>
+                  Notes on engineering and product delivery.
+                </h2>
+                <p className='mt-4 max-w-xl text-sm leading-7 text-zinc-400'>
+                  Practical thoughts from building, testing, and maintaining
+                  modern web products.
+                </p>
+              </div>
+              <MotionUnstyledLink
+                href='/blog'
+                className='inline-flex items-center gap-2 text-sm font-semibold text-primary-300 hover:text-primary-200'
+                whileHover={liftSmall}
+                whileTap={press}
+              >
+                View all writing
+                <FiArrowUpRight />
+              </MotionUnstyledLink>
+            </motion.div>
+
+            <div className='mt-10 grid gap-5 md:grid-cols-2'>
+              {posts.map((post, index) => (
+                <MotionUnstyledLink
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className='group flex h-full flex-col rounded border border-white/10 bg-white/[0.035] p-5 transition-colors hover:border-primary-300/35 hover:bg-white/5 focus-visible:border-primary-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300'
+                  {...getRevealMotion(
+                    Boolean(shouldReduceMotion),
+                    index * 0.08,
+                  )}
+                  whileHover={liftMedium}
+                  whileTap={press}
+                >
+                  <div className='flex flex-wrap items-center gap-3 text-xs text-zinc-500'>
+                    <span className='text-primary-300'>{post.category}</span>
+                    <span className='h-1 w-1 rounded-full bg-zinc-700' />
+                    <span>{formatBlogDate(post.date)}</span>
+                  </div>
+                  <h3 className='mt-3 text-xl font-semibold leading-snug text-white'>
+                    {post.title}
+                  </h3>
+                  <p className='mt-3 line-clamp-2 text-sm leading-7 text-zinc-400'>
+                    {post.description}
+                  </p>
+                  <div className='mt-auto flex items-center justify-between gap-4 pt-5 text-sm'>
+                    <span className='inline-flex items-center gap-1.5 text-zinc-500'>
+                      <FiClock />
+                      {post.readingTime}
+                    </span>
+                    <span className='inline-flex items-center gap-2 font-semibold text-primary-300'>
+                      Read article
+                      <FiArrowUpRight className='transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                    </span>
+                  </div>
+                </MotionUnstyledLink>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section
+          id='experience'
+          className='relative scroll-mt-20 overflow-hidden border-b border-white/10 py-20'
+        >
+          <SectionSquareBackground
+            variant={4}
             shouldReduceMotion={Boolean(shouldReduceMotion)}
           />
           <div className='layout relative z-10'>
@@ -557,7 +640,7 @@ export default function HomePage() {
           className='relative scroll-mt-20 overflow-hidden border-b border-white/10 py-20'
         >
           <SectionSquareBackground
-            variant={4}
+            variant={5}
             shouldReduceMotion={Boolean(shouldReduceMotion)}
           />
           <div className='layout relative z-10'>
@@ -609,33 +692,6 @@ export default function HomePage() {
                 );
               })}
             </div>
-          </div>
-        </section>
-
-        <section className='relative overflow-hidden border-b border-white/10 py-20'>
-          <SectionSquareBackground
-            variant={5}
-            shouldReduceMotion={Boolean(shouldReduceMotion)}
-          />
-          <div className='layout relative z-10 grid gap-6 lg:grid-cols-2'>
-            {education.map((item, index) => (
-              <motion.article
-                key={item.school}
-                className='rounded border border-white/10 bg-white/[0.035] p-6'
-                {...getRevealMotion(Boolean(shouldReduceMotion), index * 0.09)}
-              >
-                <p className='text-sm text-primary-300'>{item.period}</p>
-                <h2 className='mt-3 text-xl font-semibold text-white'>
-                  {item.school}
-                </h2>
-                <p className='mt-1 text-sm font-medium text-zinc-300'>
-                  {item.program}
-                </p>
-                <p className='mt-4 text-sm leading-7 text-zinc-400'>
-                  {item.detail}
-                </p>
-              </motion.article>
-            ))}
           </div>
         </section>
 

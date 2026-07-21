@@ -17,6 +17,8 @@ const enterTransition = {
   ease: [0.16, 1, 0.3, 1] as const,
 };
 
+const MotionUnstyledLink = motion.create(UnstyledLink);
+
 function formatDate(date: string) {
   return new Intl.DateTimeFormat('id-ID', {
     day: 'numeric',
@@ -75,8 +77,9 @@ export default function BlogIndexPage({ posts }: BlogIndexPageProps) {
         {featuredPost && (
           <section className='relative border-b border-white/10 py-14'>
             <div className='layout'>
-              <motion.article
-                className='grid gap-8 rounded border border-primary-300/25 bg-primary-300/8 p-6 shadow-2xl shadow-black/20 sm:p-8 lg:grid-cols-[0.82fr_1.18fr]'
+              <MotionUnstyledLink
+                href={`/blog/${featuredPost.slug}`}
+                className='group grid gap-8 rounded border border-primary-300/25 bg-primary-300/8 p-6 shadow-2xl shadow-black/20 transition-colors hover:border-primary-300/50 hover:bg-primary-300/10 focus-visible:border-primary-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300 sm:p-8 lg:grid-cols-[0.82fr_1.18fr]'
                 {...revealMotion}
               >
                 <div>
@@ -111,15 +114,12 @@ export default function BlogIndexPage({ posts }: BlogIndexPageProps) {
                   <p className='mt-4 text-sm leading-7 text-zinc-300'>
                     {featuredPost.description}
                   </p>
-                  <UnstyledLink
-                    href={`/blog/${featuredPost.slug}`}
-                    className='mt-6 inline-flex items-center gap-2 rounded border border-primary-300/70 bg-primary-300 px-4 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-primary-200'
-                  >
+                  <span className='mt-6 inline-flex items-center gap-2 rounded border border-primary-300/70 bg-primary-300 px-4 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-primary-200'>
                     Read article
-                    <FiArrowUpRight />
-                  </UnstyledLink>
+                    <FiArrowUpRight className='transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                  </span>
                 </div>
-              </motion.article>
+              </MotionUnstyledLink>
             </div>
           </section>
         )}
@@ -135,9 +135,10 @@ export default function BlogIndexPage({ posts }: BlogIndexPageProps) {
 
             <div className='grid gap-4 md:grid-cols-2'>
               {regularPosts.map((post, index) => (
-                <motion.article
+                <MotionUnstyledLink
                   key={post.slug}
-                  className='rounded border border-white/10 bg-white/[0.035] p-5 hover:border-primary-300/35 hover:bg-white/5'
+                  href={`/blog/${post.slug}`}
+                  className='group rounded border border-white/10 bg-white/[0.035] p-5 transition-colors hover:border-primary-300/35 hover:bg-white/5 focus-visible:border-primary-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-300'
                   initial={
                     shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 }
                   }
@@ -156,14 +157,11 @@ export default function BlogIndexPage({ posts }: BlogIndexPageProps) {
                   <p className='mt-3 text-sm leading-7 text-zinc-400'>
                     {post.description}
                   </p>
-                  <UnstyledLink
-                    href={`/blog/${post.slug}`}
-                    className='mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary-300 hover:text-primary-200'
-                  >
+                  <span className='mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary-300 hover:text-primary-200'>
                     Read article
-                    <FiArrowUpRight />
-                  </UnstyledLink>
-                </motion.article>
+                    <FiArrowUpRight className='transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                  </span>
+                </MotionUnstyledLink>
               ))}
             </div>
           </div>

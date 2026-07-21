@@ -89,6 +89,9 @@ This keeps the first iteration simple. If content grows, these arrays can be mov
 
 ### 2026-07-21
 
+- Removed the Education section and its local data from the homepage.
+- Added a Latest Writing homepage section that automatically displays the two newest Markdown posts as fully clickable entry cards with a link to the complete blog.
+- Removed the “Catatan Membangun Produk Full-Stack yang Lebih Tahan Lama” blog post and made featured and regular blog cards fully clickable with visible keyboard focus states.
 - Added Reku.id Product Development to the Projects collection as professional product work, covering the documented transition from frontend to full-stack ownership.
 - Updated project totals and page copy to distinguish professional product work from freelance client projects.
 - Limited the homepage project showcase to Reku.id and Moxie Lab Digital while keeping all projects on `/projects`.
