@@ -18,6 +18,9 @@ the same project and blog content as the classic site.
 Links inside the pixel experience should remain under `/pixel-art` when an
 equivalent pixel page exists. The shared animated theme dropdown is the
 explicit way to switch between the pixel route family and the classic UI.
+Equivalent paths, query parameters, and hashes are preserved during the
+switch. For example, `/blog/post-slug` maps to
+`/pixel-art/blog/post-slug` and back.
 
 ## Components
 
@@ -27,6 +30,11 @@ explicit way to switch between the pixel route family and the classic UI.
 - `ThemeSwitcher` provides the animated dropdown, active-theme state,
   click-away behavior, Escape handling, and arrow-key menu navigation for both
   headers.
+- `ThemeTransition` persists above page layouts, covers the full viewport,
+  performs route navigation behind the overlay, and reveals the destination
+  theme after navigation completes.
+- `ThemeTransition.module.css` contains isolated classic and pixel transition
+  treatments without adding rules to `globals.css`.
 - `PixelPortfolio.module.css` contains the complete pixel design system,
   responsive behavior, archive layouts, and article typography.
 
@@ -42,6 +50,8 @@ The classic `Layout`, `Header`, and pages remain independent.
   focus states.
 - Test at 390px and desktop widths with no horizontal overflow.
 - Keep reduced-motion handling for transitions and interactive feedback.
+- Keep route pairs synchronized in `getThemePath()` whenever a new equivalent
+  classic and pixel page is added.
 
 ## Shared Content
 

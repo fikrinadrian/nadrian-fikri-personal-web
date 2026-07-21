@@ -1,28 +1,30 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 import { FiCheck, FiGrid, FiMonitor } from 'react-icons/fi';
 
 import styles from '@/styles/PixelPortfolio.module.css';
 
+import {
+  getThemePath,
+  PortfolioTheme,
+  useThemeTransition,
+} from '@/components/layout/ThemeTransition';
 import UnstyledLink from '@/components/links/UnstyledLink';
 
-type Theme = 'classic' | 'pixel';
-
 type ThemeSwitcherProps = {
-  currentTheme: Theme;
+  currentTheme: PortfolioTheme;
 };
 
 const themes = [
   {
     id: 'classic' as const,
-    href: '/',
     label: 'Classic UI',
     description: 'Modern dark portfolio',
     icon: FiMonitor,
   },
   {
     id: 'pixel' as const,
-    href: '/pixel-art',
     label: 'Pixel Art',
     description: '8-bit adventure mode',
     icon: FiGrid,
@@ -31,6 +33,8 @@ const themes = [
 
 export default function ThemeSwitcher({ currentTheme }: ThemeSwitcherProps) {
   const [isOpen, setIsOpen] = React.useState(false);
+  const router = useRouter();
+  const themeTransition = useThemeTransition();
   const containerRef = React.useRef<HTMLDivElement>(null);
   const triggerRef = React.useRef<HTMLButtonElement>(null);
   const menuId = React.useId();
@@ -148,7 +152,7 @@ export default function ThemeSwitcher({ currentTheme }: ThemeSwitcherProps) {
             className={
               isPixel
                 ? styles['pixel-theme-menu']
-                : 'absolute top-[calc(100%+12px)] right-0 z-[120] w-64 rounded border border-white/10 bg-[#0d1118] p-2 text-left shadow-2xl shadow-black/50'
+                : 'absolute top-[calc(100%+12px)] right-0 z-120 w-64 rounded border border-white/10 bg-[#0d1118] p-2 text-left shadow-2xl shadow-black/50'
             }
             initial={
               shouldReduceMotion ? false : { opacity: 0, y: -8, scale: 0.96 }
@@ -180,11 +184,12 @@ export default function ThemeSwitcher({ currentTheme }: ThemeSwitcherProps) {
               {themes.map((theme) => {
                 const Icon = theme.icon;
                 const isActive = theme.id === currentTheme;
+                const href = getThemePath(theme.id, router.asPath);
 
                 return (
                   <UnstyledLink
                     key={theme.id}
-                    href={theme.href}
+                    href={href}
                     role='menuitem'
                     aria-current={isActive ? 'page' : undefined}
                     className={
@@ -198,7 +203,21 @@ export default function ThemeSwitcher({ currentTheme }: ThemeSwitcherProps) {
                               : 'text-zinc-300 hover:bg-white/5 hover:text-white'
                           }`
                     }
-                    onClick={() => setIsOpen(false)}
+                    onClick={(event) => {
+                      setIsOpen(false);
+
+                      if (isActive) {
+                        event.preventDefault();
+                        return;
+                      }
+
+                      event.preventDefault();
+                      if (themeTransition) {
+                        themeTransition.startThemeTransition(theme.id, href);
+                      } else {
+                        void router.push(href);
+                      }
+                    }}
                   >
                     <span
                       className={

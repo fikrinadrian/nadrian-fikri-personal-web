@@ -1,0 +1,196 @@
+.overlay {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  display: grid;
+  overflow: hidden;
+  place-items: center;
+  transform-origin: bottom;
+}
+
+.overlayClassic {
+  background: #080a0f;
+  color: #f4f4f5;
+}
+
+.overlayPixel {
+  background-color: #ffd95a;
+  background-image:
+    linear-gradient(rgb(16 24 47 / 0.12) 2px, transparent 2px),
+    linear-gradient(90deg, rgb(16 24 47 / 0.12) 2px, transparent 2px);
+  background-size: 32px 32px;
+  color: #10182f;
+}
+
+.decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.overlayClassic .decoration {
+  background:
+    radial-gradient(
+      circle at 18% 30%,
+      rgb(110 231 183 / 0.14),
+      transparent 24%
+    ),
+    linear-gradient(
+      115deg,
+      transparent 45%,
+      rgb(110 231 183 / 0.08) 45% 46%,
+      transparent 46%
+    );
+}
+
+.overlayPixel .decoration::before,
+.overlayPixel .decoration::after {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  border: 6px solid #10182f;
+  background: #f476ad;
+  box-shadow: 10px 10px 0 #10182f;
+  content: '';
+}
+
+.overlayPixel .decoration::before {
+  top: 10%;
+  left: 8%;
+  transform: rotate(8deg);
+}
+
+.overlayPixel .decoration::after {
+  right: 8%;
+  bottom: 10%;
+  background: #8fd3ff;
+  transform: rotate(-10deg);
+}
+
+.transitionPanel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-width: min(360px, calc(100vw - 40px));
+  justify-items: center;
+  text-align: center;
+}
+
+.overlayClassic .transitionPanel {
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 4px;
+  background: rgb(255 255 255 / 0.035);
+  padding: 2.5rem;
+  box-shadow: 0 30px 80px rgb(0 0 0 / 0.45);
+}
+
+.overlayPixel .transitionPanel {
+  border: 5px solid #10182f;
+  background: #fff8de;
+  padding: 2.25rem 1.5rem;
+  box-shadow: 9px 9px 0 #10182f;
+}
+
+.transitionIcon {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 1.25rem;
+  place-items: center;
+  font-size: 1.5rem;
+}
+
+.overlayClassic .transitionIcon {
+  border: 1px solid rgb(110 231 183 / 0.45);
+  border-radius: 4px;
+  background: rgb(110 231 183 / 0.1);
+  color: #6ee7b7;
+}
+
+.overlayPixel .transitionIcon {
+  border: 4px solid #10182f;
+  background: #294fbf;
+  color: white;
+  box-shadow: 4px 4px 0 #10182f;
+}
+
+.transitionPanel p {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.overlayClassic .transitionPanel p {
+  color: #71717a;
+}
+
+.overlayPixel .transitionPanel p {
+  color: #294fbf;
+  font-family: 'Courier New', ui-monospace, monospace;
+}
+
+.transitionPanel strong {
+  margin-top: 0.55rem;
+  font-size: clamp(1.8rem, 7vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.overlayPixel .transitionPanel strong {
+  font-family: 'Courier New', ui-monospace, monospace;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+}
+
+.progress {
+  width: 100%;
+  height: 8px;
+  margin-top: 1.5rem;
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left;
+}
+
+.overlayClassic .progress {
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.08);
+}
+
+.overlayClassic .progress span {
+  background: #6ee7b7;
+}
+
+.overlayPixel .progress {
+  height: 16px;
+  border: 4px solid #10182f;
+  background: white;
+  padding: 2px;
+}
+
+.overlayPixel .progress span {
+  background: #5ecb83;
+}
+
+@media (max-width: 639px) {
+  .overlayPixel .decoration::before,
+  .overlayPixel .decoration::after {
+    width: 58px;
+    height: 58px;
+    opacity: 0.55;
+  }
+
+  .overlayClassic .transitionPanel {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay {
+    display: none;
+  }
+}
