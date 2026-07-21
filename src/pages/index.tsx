@@ -360,7 +360,7 @@ export default function HomePage() {
               <div className='mt-8 flex flex-wrap items-center gap-4 text-sm text-zinc-400'>
                 <span className='inline-flex items-center gap-2'>
                   <FiMapPin className='text-primary-300' />
-                  Bogor, Indonesia
+                  Indonesia
                 </span>
                 <span className='hidden h-1 w-1 rounded-full bg-zinc-600 sm:block' />
                 <span>Open to high-impact product engineering work</span>
